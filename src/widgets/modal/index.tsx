@@ -2,8 +2,8 @@ import { FC } from 'react';
 import { Modal, Box, Backdrop } from '@mui/material';
 import { motion } from 'framer-motion';
 
-import { IModalProps } from '../types';
-import { modalStyle } from '../util/styles';
+import { IModalProps } from '../../shared/types';
+import { modalStyle } from '../../shared/styles';
 
 const ModalInfo: FC<IModalProps> = ({ open, handlerClose, children }) => {
   return (

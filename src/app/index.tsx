@@ -2,9 +2,10 @@ import { Routes, Route } from 'react-router-dom';
 import { Box } from '@mui/material';
 import { ThemeProvider } from '@emotion/react';
 
-import { mainStyle, theme } from './util/styles';
-import ErrorBoundry from './components/ErrorBoundry';
-import Layout from './components/Layout';
+import { mainStyle, theme } from '../shared/styles';
+import ErrorBoundry from '../widgets/error';
+import Layout from '../widgets/layout';
+import './index.css';
 
 const App = () => {
   return (
