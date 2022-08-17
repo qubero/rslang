@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { learnWordsAPI } from '../services/learnWordsAPI';
+import { learnWordsAPI } from '../api';
 
 export const store = configureStore({
   reducer: {

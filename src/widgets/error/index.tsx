@@ -1,8 +1,8 @@
 import { Component } from 'react';
 import { Box, Typography } from '@mui/material';
 
-import { error } from '../util/styles';
-import { IErrorProps, IErrorState } from '../types';
+import { error } from '../../shared/styles';
+import { IErrorProps, IErrorState } from '../../shared/types';
 
 export default class ErrorBoundry extends Component<IErrorProps, IErrorState> {
   state = { hasError: false };
