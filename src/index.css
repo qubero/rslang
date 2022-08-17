@@ -1,0 +1,11 @@
+body {
+  overflow-y: scroll;
+}
+a {
+  text-decoration: none;
+  color: #f3e600;
+}
+a.active {
+  color: white;
+  cursor: default;
+}
