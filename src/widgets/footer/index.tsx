@@ -1,27 +1,49 @@
 import { memo } from 'react';
-import { Toolbar, Typography, Link, SvgIcon } from '@mui/material';
+import { Toolbar, Typography, Link, SvgIcon, IconButton, Stack } from '@mui/material';
+import { GitHub } from '@mui/icons-material';
 
-import { ReactComponent as RSS } from './assets/logo_RSS.svg';
+import { ReactComponent as RSS } from './assets/logo_rss.svg';
+import { BlackTooltip } from './lib/styled';
 
 const Footer = () => (
-  <Toolbar sx={{ bgcolor: '#000', paddingY: 1 }}>
+  <Toolbar sx={{ bgcolor: '#000', mt: 'auto', justifyContent: 'space-between' }}>
     <Link
       href="https://rs.school/"
       target="_blank"
       rel="noopener"
       underline="none"
-      sx={{ flexGrow: 1 }}
+      sx={{ display: 'flex' }}
     >
-      <SvgIcon component={RSS} sx={{ width: '60px', height: '60px' }} inheritViewBox />
+      <IconButton>
+        <SvgIcon component={RSS} sx={{ width: '90px', height: '40px' }} inheritViewBox />
+      </IconButton>
     </Link>
-    <Link href="https://github.com/diXrom" target="_blank" rel="noopener" underline="none">
-      <Typography variant="h6" component="div" color="secondary">
-        GitHub
+    <Stack direction={'row'} sx={{ alignItems: 'center' }}>
+      <Typography variant="h6" component="div" color="secondary" sx={{ mr: 1 }}>
+        2022
       </Typography>
-    </Link>
-    <Typography variant="h6" component="div" sx={{ ml: 3, color: '#FFF' }}>
-      2022
-    </Typography>
+      <Link href="https://github.com/puptup" target="_blank" rel="noopener" underline="none">
+        <BlackTooltip title="Kiryl Kashavar" placement="top">
+          <IconButton color="secondary">
+            <GitHub />
+          </IconButton>
+        </BlackTooltip>
+      </Link>
+      <Link href="https://github.com/qubero" target="_blank" rel="noopener" underline="none">
+        <BlackTooltip title="Vladislav Mamaev" placement="top">
+          <IconButton color="secondary">
+            <GitHub />
+          </IconButton>
+        </BlackTooltip>
+      </Link>
+      <Link href="https://github.com/diXrom" target="_blank" rel="noopener" underline="none">
+        <BlackTooltip title="Timur Tolegen" placement="top">
+          <IconButton color="secondary">
+            <GitHub />
+          </IconButton>
+        </BlackTooltip>
+      </Link>
+    </Stack>
   </Toolbar>
 );
 
