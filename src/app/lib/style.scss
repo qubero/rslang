@@ -1,0 +1,10 @@
+.navLink {
+  color:inherit;
+  text-decoration: none;
+  &.active{
+    text-decoration: underline;
+    &.logo{
+      text-decoration: none;
+    }
+  }
+}
