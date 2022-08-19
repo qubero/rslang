@@ -46,5 +46,13 @@ module.exports = {
         trailingComma: 'none'
       }
     ]
+  },
+  settings: {
+    'import/resolver': {
+      node: {
+        extensions: ['.ts', '.tsx'],
+        moduleDirectory: ['node_modules', 'src/']
+      }
+    }
   }
 };
