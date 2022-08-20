@@ -4,6 +4,7 @@ import { IListItemProps } from './lib/types';
 
 const ListItemMenu: FC<IListItemProps> = (props) => {
   const { open, text, children, onClick, disabled } = props;
+
   return (
     <List disablePadding sx={{ display: 'block' }}>
       <ListItemButton sx={{ minHeight: 68, px: 2.5 }} onClick={onClick} disabled={disabled}>

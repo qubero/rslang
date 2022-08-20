@@ -10,6 +10,7 @@ import { drawlerStyle } from './lib/styled';
 
 const DrawerLayout = () => {
   const { open, handleDrawerOpen, ...propsDrawer } = useDrawer();
+
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />

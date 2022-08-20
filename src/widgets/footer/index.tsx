@@ -4,6 +4,7 @@ import { GitHub } from '@mui/icons-material';
 
 import { ReactComponent as RSS } from './assets/logo_rss.svg';
 import { BlackTooltip } from './lib/styled';
+import { gitData } from './lib/data';
 
 const Footer = () => (
   <Toolbar sx={{ bgcolor: '#000', mt: 'auto', justifyContent: 'space-between' }}>
@@ -22,27 +23,15 @@ const Footer = () => (
       <Typography variant="h6" component="div" color="secondary" sx={{ mr: 1 }}>
         2022
       </Typography>
-      <Link href="https://github.com/puptup" target="_blank" rel="noopener" underline="none">
-        <BlackTooltip title="Kiryl Kashavar" placement="top">
-          <IconButton color="secondary">
-            <GitHub />
-          </IconButton>
-        </BlackTooltip>
-      </Link>
-      <Link href="https://github.com/qubero" target="_blank" rel="noopener" underline="none">
-        <BlackTooltip title="Vladislav Mamaev" placement="top">
-          <IconButton color="secondary">
-            <GitHub />
-          </IconButton>
-        </BlackTooltip>
-      </Link>
-      <Link href="https://github.com/diXrom" target="_blank" rel="noopener" underline="none">
-        <BlackTooltip title="Timur Tolegen" placement="top">
-          <IconButton color="secondary">
-            <GitHub />
-          </IconButton>
-        </BlackTooltip>
-      </Link>
+      {gitData.map((data) => (
+        <Link href={data.link} target="_blank" rel="noopener noreferrer" underline="none">
+          <BlackTooltip title={data.name} placement="top">
+            <IconButton color="secondary">
+              <GitHub />
+            </IconButton>
+          </BlackTooltip>
+        </Link>
+      ))}
     </Stack>
   </Toolbar>
 );

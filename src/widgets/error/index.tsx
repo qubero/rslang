@@ -4,7 +4,7 @@ import { Box, Typography } from '@mui/material';
 import { errorStyle } from './lib/styles';
 import { IErrorProps, IErrorState } from './lib/types';
 
-export default class ErrorBoundry extends Component<IErrorProps, IErrorState> {
+export default class ErrorBoundary extends Component<IErrorProps, IErrorState> {
   state = { hasError: false };
 
   componentDidCatch() {

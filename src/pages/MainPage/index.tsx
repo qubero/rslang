@@ -1,9 +1,15 @@
-import { Container, Typography } from '@mui/material';
-import DrawerLayout from 'widgets/DrawerLayout';
+import { Fragment } from 'react';
+import { Container } from '@mui/material';
+
 import Footer from 'widgets/Footer';
 
 const MainPage = () => {
-  return <Footer />;
+  return (
+    <Fragment>
+      <Container></Container>
+      <Footer />
+    </Fragment>
+  );
 };
 
 export default MainPage;

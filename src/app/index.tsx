@@ -3,14 +3,14 @@ import { ThemeProvider } from '@emotion/react';
 
 import MainPage from 'pages/MainPage';
 import DrawerLayout from 'widgets/DrawerLayout';
-import ErrorBoundry from 'widgets/Error';
+import ErrorBoundary from 'widgets/Error';
 import { theme } from './lib/styles';
 import './lib/style.scss';
 
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
-      <ErrorBoundry>
+      <ErrorBoundary>
         <Routes>
           <Route path="/" element={<DrawerLayout />}>
             <Route index element={<MainPage />} />
@@ -20,7 +20,7 @@ const App = () => {
             <Route path="info" element={<div>info</div>} />
           </Route>
         </Routes>
-      </ErrorBoundry>
+      </ErrorBoundary>
     </ThemeProvider>
   );
 };

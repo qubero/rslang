@@ -20,6 +20,7 @@ import { IMiniDrawerProps } from './lib/types';
 
 const MiniDrawer: FC<IMiniDrawerProps> = (props) => {
   const { open, toggle, handleDrawerClose, handleToggle } = props;
+
   return (
     <Drawer variant="permanent" open={open}>
       <DrawerHeader sx={{ justifyContent: 'space-between' }}>

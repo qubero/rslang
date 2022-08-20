@@ -8,6 +8,7 @@ import { AppBar as BarHeader } from './lib/styles';
 
 const AppBar: FC<IAppBarProps> = (props) => {
   const { open, handleDrawerOpen } = props;
+
   return (
     <BarHeader position="fixed" open={open}>
       <Toolbar>
