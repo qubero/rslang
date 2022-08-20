@@ -2,7 +2,7 @@ import { memo } from 'react';
 import { Toolbar, Typography, Link, SvgIcon, IconButton, Stack } from '@mui/material';
 import { GitHub } from '@mui/icons-material';
 
-import { ReactComponent as RSS } from './assets/logo_rss.svg';
+import { ReactComponent as RSS } from './assets/logo_RSS.svg';
 import { BlackTooltip } from './lib/styled';
 import { gitData } from './lib/data';
 
