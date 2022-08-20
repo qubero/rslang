@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-import { IUser, IWord, IWordsQuery } from '../types';
-import { API_URL, HEADERS } from '../constants';
+import { IUser, IWord, IWordsQuery } from './lib/types';
+import { API_URL, HEADERS } from './lib/constants';
 
 export const learnWordsAPI = createApi({
   reducerPath: 'learnWordsAPI',

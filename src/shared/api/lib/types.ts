@@ -1,17 +1,3 @@
-interface IErrorState {
-  hasError: boolean;
-}
-
-interface IErrorProps {
-  children: JSX.Element;
-}
-
-interface IModalProps {
-  children: JSX.Element[] | JSX.Element;
-  open: boolean;
-  handlerClose: () => void;
-}
-
 interface IWord {
   _id: {
     $oid: string;
@@ -42,4 +28,4 @@ interface IUser {
   password: string;
 }
 
-export type { IErrorState, IErrorProps, IModalProps, IWord, IWordsQuery, IUser };
+export type { IWord, IWordsQuery, IUser };

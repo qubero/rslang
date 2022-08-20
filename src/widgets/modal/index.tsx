@@ -1,9 +1,9 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { Modal, Box, Backdrop } from '@mui/material';
 import { motion } from 'framer-motion';
 
-import { IModalProps } from '../../shared/types';
-import { modalStyle } from '../../shared/styles';
+import { modalStyle } from './lib/styles';
+import { IModalProps } from './lib/types';
 
 const ModalInfo: FC<IModalProps> = ({ open, handlerClose, children }) => {
   return (
@@ -30,4 +30,4 @@ const ModalInfo: FC<IModalProps> = ({ open, handlerClose, children }) => {
   );
 };
 
-export default ModalInfo;
+export default memo(ModalInfo);
