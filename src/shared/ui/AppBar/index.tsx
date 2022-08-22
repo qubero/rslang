@@ -32,7 +32,7 @@ const AppBar: FC<IAppBarProps> = (props) => {
           <IconButton color="secondary">
             <Login sx={{ mr: 1 }} />
             <Typography variant="h6" component="div">
-              Login
+              Войти
             </Typography>
           </IconButton>
         </Box>
