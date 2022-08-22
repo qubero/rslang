@@ -1,5 +1,4 @@
 import { FC } from 'react';
-import { NavLink } from 'react-router-dom';
 import { Box, List, Typography, Divider, IconButton, Collapse } from '@mui/material';
 import {
   ChevronLeft,
@@ -11,7 +10,7 @@ import {
   ExpandLess,
   ExpandMore,
   ElectricBolt,
-  Audiotrack
+  Audiotrack,
 } from '@mui/icons-material';
 
 import ListItem from '../ListItemMenu';
@@ -25,7 +24,7 @@ const MiniDrawer: FC<IMiniDrawerProps> = (props) => {
     <Drawer variant="permanent" open={open}>
       <DrawerHeader sx={{ justifyContent: 'space-between' }}>
         <Typography variant="h6" sx={{ ml: 8.5, opacity: open ? 1 : 0, transition: 'all .5s' }}>
-          Menu
+          Меню
         </Typography>
         <IconButton onClick={handleDrawerClose}>
           <ChevronLeft color="primary" />
@@ -33,43 +32,33 @@ const MiniDrawer: FC<IMiniDrawerProps> = (props) => {
       </DrawerHeader>
       <Divider />
       <List sx={{ p: 0 }} component="nav">
-        <NavLink to="/" className="navLink">
-          <ListItem text="Home" open={open}>
-            <Widgets color="primary" />
-          </ListItem>
-        </NavLink>
-        <NavLink to="/book" className="navLink">
-          <ListItem text="Book" open={open}>
-            <AutoStories color="primary" />
-          </ListItem>
-        </NavLink>
-        <ListItem text="Games" open={open} onClick={handleToggle} disabled={!open}>
+        <ListItem text="Главная" open={open} link="/">
+          <Widgets color="primary" />
+        </ListItem>
+        <ListItem text="Учебник" open={open} link="/book">
+          <AutoStories color="primary" />
+        </ListItem>
+        <ListItem text="Игры" open={open} onClick={handleToggle} disabled={!open}>
           <Extension color="primary" />
           {toggle ? <ExpandLess /> : <ExpandMore />}
         </ListItem>
         <Collapse in={toggle} timeout="auto" unmountOnExit>
           <Box sx={{ pl: 2 }}>
-            <NavLink to="/sprint" className="navLink">
-              <ListItem text="Sprint" open={toggle}>
-                <ElectricBolt color="primary" />
-              </ListItem>
-            </NavLink>
-            <NavLink to="/audio" className="navLink">
-              <ListItem text="Audio" open={toggle}>
-                <Audiotrack color="primary" />
-              </ListItem>
-            </NavLink>
+            <ListItem text="Спринт" open={toggle} link="/sprint">
+              <ElectricBolt color="primary" />
+            </ListItem>
+            <ListItem text="Аудиовызов" open={toggle} link="/audiocall">
+              <Audiotrack color="primary" />
+            </ListItem>
           </Box>
         </Collapse>
-        <NavLink to="/info" className="navLink">
-          <ListItem text="Info" open={open}>
-            <Addchart color="primary" />
-          </ListItem>
-        </NavLink>
+        <ListItem text="Статистика" open={open} link="/info">
+          <Addchart color="primary" />
+        </ListItem>
       </List>
       <Divider />
       <Box sx={{ mt: 'auto' }}>
-        <ListItem text="Log out" open={open}>
+        <ListItem text="Выйти" open={open}>
           <Logout color="primary" />
         </ListItem>
       </Box>
