@@ -14,12 +14,17 @@ import {
   Audiotrack
 } from '@mui/icons-material';
 
+import { useGameSettings } from 'widgets/Games';
+
 import ListItem from '../ListItemMenu';
 import { Drawer, DrawerHeader } from './lib/styles';
 import { IMiniDrawerProps } from './lib/types';
 
 const MiniDrawer: FC<IMiniDrawerProps> = (props) => {
   const { open, toggle, handleDrawerClose, handleToggle } = props;
+
+  const { getSettingsByLocation } = useGameSettings();
+  const settings = getSettingsByLocation();
 
   return (
     <Drawer variant="permanent" open={open}>
@@ -49,12 +54,12 @@ const MiniDrawer: FC<IMiniDrawerProps> = (props) => {
         </ListItem>
         <Collapse in={toggle} timeout="auto" unmountOnExit>
           <Box sx={{ pl: 2 }}>
-            <NavLink to="/sprint" className="navLink">
+            <NavLink to="/sprint" className="navLink" state={settings}>
               <ListItem text="Sprint" open={toggle}>
                 <ElectricBolt color="primary" />
               </ListItem>
             </NavLink>
-            <NavLink to="/audio" className="navLink">
+            <NavLink to="/audio" className="navLink" state={settings}>
               <ListItem text="Audio" open={toggle}>
                 <Audiotrack color="primary" />
               </ListItem>
