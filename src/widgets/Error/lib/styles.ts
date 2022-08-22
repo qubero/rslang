@@ -9,7 +9,7 @@ const errorStyle = {
   border: '3px solid #F3E600',
   borderRadius: '10px',
   boxShadow: 24,
-  p: 4
+  p: 4,
 };
 
 export { errorStyle };

@@ -13,7 +13,7 @@ const ModalInfo: FC<IModalProps> = ({ open, handlerClose, children }) => {
       closeAfterTransition
       BackdropComponent={Backdrop}
       BackdropProps={{
-        timeout: 500
+        timeout: 500,
       }}
     >
       <Box

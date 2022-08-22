@@ -9,13 +9,13 @@ export const learnWordsAPI = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: API_URL }),
   endpoints: (build) => ({
     getWords: build.query<IWord[], IWordsQuery>({
-      query: ({ page, group }) => `words?page=${page}&group=${group}`
+      query: ({ page, group }) => `words?page=${page}&group=${group}`,
     }),
     addUser: build.mutation<IUser, IUser>({
       query: (body) => ({ url: 'users', headers: HEADERS, method: 'POST', body }),
-      invalidatesTags: ['user']
-    })
-  })
+      invalidatesTags: ['user'],
+    }),
+  }),
 });
 
 export const { useGetWordsQuery, useAddUserMutation } = learnWordsAPI;
