@@ -6,7 +6,7 @@ const useDrawer = () => {
   const [open, setOpen] = useState(false);
   const [toggle, setToggle] = useState(false);
   const { pathname } = useLocation();
-  const { SPINT, AUDIOCALL } = ROUTE_PATH;
+  const { SPRINT, AUDIOCALL } = ROUTE_PATH;
 
   const handleToggle = () => {
     setToggle((state) => !state);
@@ -18,7 +18,7 @@ const useDrawer = () => {
     setOpen(false);
     setToggle(false);
   };
-  const hasFooter = () => pathname !== `/${SPINT}` && pathname !== `/${AUDIOCALL}`;
+  const hasFooter = () => pathname !== `/${SPRINT}` && pathname !== `/${AUDIOCALL}`;
 
   return { open, toggle, handleDrawerOpen, handleDrawerClose, handleToggle, hasFooter };
 };

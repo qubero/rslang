@@ -2,10 +2,14 @@ import { FC, memo } from 'react';
 import { NavLink } from 'react-router-dom';
 import { ListItem as List, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
 
+import { useGameSettings } from 'widgets/Games';
 import { IListItemProps } from './lib/types';
 
 const ListItemMenu: FC<IListItemProps> = (props) => {
   const { open, text, children, onClick, disabled, link } = props;
+  const { getSettingsByLocation } = useGameSettings();
+  const settings = getSettingsByLocation();
+
   const ListBtn = () => (
     <ListItemButton sx={{ minHeight: 68, px: 2.5 }} onClick={onClick} disabled={disabled}>
       <ListItemIcon sx={{ minWidth: 0, mr: 2, justifyContent: 'center' }}>
@@ -18,7 +22,7 @@ const ListItemMenu: FC<IListItemProps> = (props) => {
   return (
     <List disablePadding sx={{ display: 'block' }}>
       {link ? (
-        <NavLink to={link} className="navLink">
+        <NavLink to={link} className="navLink" state={settings}>
           <ListBtn />
         </NavLink>
       ) : (

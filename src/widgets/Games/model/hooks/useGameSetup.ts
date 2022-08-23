@@ -13,8 +13,8 @@ const useGameSetup = (initSettings: IGameSettings) => {
       words: (data || []).filter((word) => (settings.fromBook ? word : word)),
       isWordsLoading: isFetching || isLoading,
       isLoadedOnce: isSuccess,
-      isFetchError: isError
-    })
+      isFetchError: isError,
+    }),
   });
 
   const wordsRef = useRef<IWord[]>([]);
@@ -46,7 +46,7 @@ const useGameSetup = (initSettings: IGameSettings) => {
   return {
     isReady,
     isError: wordsQuery.isFetchError,
-    words: wordsRef.current
+    words: wordsRef.current,
   };
 };
 

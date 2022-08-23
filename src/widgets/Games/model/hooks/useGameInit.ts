@@ -30,7 +30,7 @@ const useGameInit = () => {
     settings,
     isStart,
     handleStart,
-    handleGroupChange
+    handleGroupChange,
   };
 };
 

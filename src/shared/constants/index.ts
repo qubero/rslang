@@ -1,7 +1,7 @@
 const ROUTE_PATH = {
   INDEX: '/',
   BOOK: 'book',
-  SPINT: 'sprint',
+  SPRINT: 'sprint',
   AUDIOCALL: 'audiocall',
   INFO: 'info',
 };

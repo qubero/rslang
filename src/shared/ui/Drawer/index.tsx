@@ -13,7 +13,6 @@ import {
   Audiotrack,
 } from '@mui/icons-material';
 
-import { useGameSettings } from 'widgets/Games';
 import { ROUTE_PATH } from 'shared/constants';
 import ListItem from '../ListItemMenu';
 import { Drawer, DrawerHeader } from './lib/styles';
@@ -21,10 +20,7 @@ import { IMiniDrawerProps } from './lib/types';
 
 const MiniDrawer: FC<IMiniDrawerProps> = (props) => {
   const { open, toggle, handleDrawerClose, handleToggle } = props;
-  const { INDEX, BOOK, SPINT, AUDIOCALL, INFO } = ROUTE_PATH;
-
-  const { getSettingsByLocation } = useGameSettings();
-  const settings = getSettingsByLocation();
+  const { INDEX, BOOK, SPRINT, AUDIOCALL, INFO } = ROUTE_PATH;
 
   return (
     <Drawer variant="permanent" open={open}>
@@ -50,10 +46,10 @@ const MiniDrawer: FC<IMiniDrawerProps> = (props) => {
         </ListItem>
         <Collapse in={toggle} timeout="auto" unmountOnExit>
           <Box sx={{ pl: 2 }}>
-            <ListItem text="Спринт" open={toggle} link={SPINT} state={settings}>
+            <ListItem text="Спринт" open={toggle} link={SPRINT}>
               <ElectricBolt color="primary" />
             </ListItem>
-            <ListItem text="Аудиовызов" open={toggle} link={AUDIOCALL} state={settings}>
+            <ListItem text="Аудиовызов" open={toggle} link={AUDIOCALL}>
               <Audiotrack color="primary" />
             </ListItem>
           </Box>

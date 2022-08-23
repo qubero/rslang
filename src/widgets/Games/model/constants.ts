@@ -9,13 +9,13 @@ export const GAMES = {
   [GAMES_TITLES[0]]: {
     title: 'Спринт',
     description: 'Спринт - тренировка на скорость...',
-    component: Sprint
+    component: Sprint,
   },
   [GAMES_TITLES[1]]: {
     title: 'Аудиовызов',
     description: 'Аудиовызов - тренировка на послушать...',
-    component: Audio
-  }
+    component: Audio,
+  },
 };
 
 export type IGameTitle = keyof typeof GAMES;
