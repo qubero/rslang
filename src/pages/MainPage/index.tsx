@@ -1,13 +1,17 @@
 import { Fragment } from 'react';
-import { Container } from '@mui/material';
 
-import Footer from 'widgets/Footer';
+import Intro from 'widgets/Intro';
+import OurApplication from 'widgets/OurApplication';
+import OurAbility from 'widgets/OurAbility';
+import OurTeam from 'widgets/OurTeam';
 
 const MainPage = () => {
   return (
     <Fragment>
-      <Container></Container>
-      <Footer />
+      <Intro />
+      <OurAbility />
+      <OurApplication />
+      <OurTeam />
     </Fragment>
   );
 };

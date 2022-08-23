@@ -3,9 +3,9 @@ import { learnWordsAPI } from '../api';
 
 export const store = configureStore({
   reducer: {
-    [learnWordsAPI.reducerPath]: learnWordsAPI.reducer
+    [learnWordsAPI.reducerPath]: learnWordsAPI.reducer,
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(learnWordsAPI.middleware)
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(learnWordsAPI.middleware),
 });
 
 export type AppState = ReturnType<typeof store.getState>;

@@ -3,8 +3,8 @@ import { Toolbar, Typography, Link, SvgIcon, IconButton, Stack } from '@mui/mate
 import { GitHub } from '@mui/icons-material';
 
 import { ReactComponent as RSS } from './assets/logo_RSS.svg';
-import { BlackTooltip } from './lib/styled';
-import { gitData } from './lib/data';
+import { BlackTooltip } from './lib/styles';
+import { gitData } from './model/data';
 
 const Footer = () => (
   <Toolbar sx={{ bgcolor: '#000', mt: 'auto', justifyContent: 'space-between' }}>
@@ -24,7 +24,13 @@ const Footer = () => (
         2022
       </Typography>
       {gitData.map((data) => (
-        <Link href={data.link} target="_blank" rel="noopener noreferrer" underline="none">
+        <Link
+          key={data.name}
+          href={data.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          underline="none"
+        >
           <BlackTooltip title={data.name} placement="top">
             <IconButton color="secondary">
               <GitHub />

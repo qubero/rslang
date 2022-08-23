@@ -10,7 +10,7 @@ const modalStyle = {
   border: '2px solid #F3E600',
   borderRadius: '10px',
   boxShadow: 24,
-  p: 2
+  p: 2,
 };
 
 export { modalStyle };
