@@ -13,6 +13,7 @@ import {
   Audiotrack,
 } from '@mui/icons-material';
 
+import { ROUTE_PATH } from 'shared/constants';
 import ListItem from '../ListItemMenu';
 import { Drawer, DrawerHeader } from './lib/styles';
 import { IMiniDrawerProps } from './lib/types';
@@ -32,10 +33,10 @@ const MiniDrawer: FC<IMiniDrawerProps> = (props) => {
       </DrawerHeader>
       <Divider />
       <List sx={{ p: 0 }} component="nav">
-        <ListItem text="Главная" open={open} link="/">
+        <ListItem text="Главная" open={open} link={ROUTE_PATH.home}>
           <Widgets color="primary" />
         </ListItem>
-        <ListItem text="Учебник" open={open} link="/book">
+        <ListItem text="Учебник" open={open} link={ROUTE_PATH.book}>
           <AutoStories color="primary" />
         </ListItem>
         <ListItem text="Игры" open={open} onClick={handleToggle} disabled={!open}>
@@ -44,15 +45,15 @@ const MiniDrawer: FC<IMiniDrawerProps> = (props) => {
         </ListItem>
         <Collapse in={toggle} timeout="auto" unmountOnExit>
           <Box sx={{ pl: 2 }}>
-            <ListItem text="Спринт" open={toggle} link="/sprint">
+            <ListItem text="Спринт" open={toggle} link={ROUTE_PATH.sprint}>
               <ElectricBolt color="primary" />
             </ListItem>
-            <ListItem text="Аудиовызов" open={toggle} link="/audiocall">
+            <ListItem text="Аудиовызов" open={toggle} link={ROUTE_PATH.audiocall}>
               <Audiotrack color="primary" />
             </ListItem>
           </Box>
         </Collapse>
-        <ListItem text="Статистика" open={open} link="/info">
+        <ListItem text="Статистика" open={open} link={ROUTE_PATH.info}>
           <Addchart color="primary" />
         </ListItem>
       </List>
