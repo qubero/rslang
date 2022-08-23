@@ -20,6 +20,7 @@ import { IMiniDrawerProps } from './lib/types';
 
 const MiniDrawer: FC<IMiniDrawerProps> = (props) => {
   const { open, toggle, handleDrawerClose, handleToggle } = props;
+  const { INDEX, BOOK, SPINT, AUDIOCALL, INFO } = ROUTE_PATH;
 
   return (
     <Drawer variant="permanent" open={open}>
@@ -33,10 +34,10 @@ const MiniDrawer: FC<IMiniDrawerProps> = (props) => {
       </DrawerHeader>
       <Divider />
       <List sx={{ p: 0 }} component="nav">
-        <ListItem text="Главная" open={open} link={ROUTE_PATH.home}>
+        <ListItem text="Главная" open={open} link={INDEX}>
           <Widgets color="primary" />
         </ListItem>
-        <ListItem text="Учебник" open={open} link={ROUTE_PATH.book}>
+        <ListItem text="Учебник" open={open} link={BOOK}>
           <AutoStories color="primary" />
         </ListItem>
         <ListItem text="Игры" open={open} onClick={handleToggle} disabled={!open}>
@@ -45,15 +46,15 @@ const MiniDrawer: FC<IMiniDrawerProps> = (props) => {
         </ListItem>
         <Collapse in={toggle} timeout="auto" unmountOnExit>
           <Box sx={{ pl: 2 }}>
-            <ListItem text="Спринт" open={toggle} link={ROUTE_PATH.sprint}>
+            <ListItem text="Спринт" open={toggle} link={SPINT}>
               <ElectricBolt color="primary" />
             </ListItem>
-            <ListItem text="Аудиовызов" open={toggle} link={ROUTE_PATH.audiocall}>
+            <ListItem text="Аудиовызов" open={toggle} link={AUDIOCALL}>
               <Audiotrack color="primary" />
             </ListItem>
           </Box>
         </Collapse>
-        <ListItem text="Статистика" open={open} link={ROUTE_PATH.info}>
+        <ListItem text="Статистика" open={open} link={INFO}>
           <Addchart color="primary" />
         </ListItem>
       </List>

@@ -1,8 +1,8 @@
 const ROUTE_PATH = {
-  home: '/',
-  book: 'book',
-  sprint: 'sprint',
-  audiocall: 'audiocall',
-  info: 'info',
+  INDEX: '/',
+  BOOK: 'book',
+  SPINT: 'sprint',
+  AUDIOCALL: 'audiocall',
+  INFO: 'info',
 };
 export { ROUTE_PATH };
