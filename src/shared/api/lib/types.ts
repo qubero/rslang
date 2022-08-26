@@ -24,8 +24,22 @@ interface IWordsQuery {
 }
 
 interface IUser {
+  name?: string;
   email: string;
   password: string;
 }
 
-export type { IWord, IWordsQuery, IUser };
+interface IUserResponse {
+  name: string;
+  userId: string;
+  message: string;
+  token: string;
+  refreshToken: string;
+}
+
+interface IToken {
+  id: string;
+  token: string;
+}
+
+export type { IWord, IWordsQuery, IUser, IUserResponse, IToken };

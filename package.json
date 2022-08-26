@@ -6,6 +6,7 @@
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.0",
     "@mui/icons-material": "^5.8.4",
+    "@mui/lab": "^5.0.0-alpha.96",
     "@mui/material": "^5.10.1",
     "@reduxjs/toolkit": "^1.8.5",
     "@types/jest": "^28.1.7",
@@ -22,7 +23,8 @@
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "sass": "^1.54.4",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.5",

@@ -1,21 +1,32 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-import { IUser, IWord, IWordsQuery } from './lib/types';
-import { API_URL, HEADERS } from './lib/constants';
+import { IUser, IUserResponse, IWord, IWordsQuery, IToken } from './lib/types';
+import { getAuthHeaders } from './lib/util';
+import { API_URL, API_PATH } from './model/constants';
+
+const { WORDS, USERS, TOKENS, SIGNING } = API_PATH;
 
 export const learnWordsAPI = createApi({
   reducerPath: 'learnWordsAPI',
-  tagTypes: ['user'],
+  tagTypes: [WORDS],
   baseQuery: fetchBaseQuery({ baseUrl: API_URL }),
   endpoints: (build) => ({
-    getWords: build.query<IWord[], IWordsQuery>({
-      query: ({ page, group }) => `words?page=${page}&group=${group}`,
+    getWords: build.query<IWord[], IWordsQuery>({ query: (params) => ({ url: WORDS, params }) }),
+    updateToken: build.mutation<IUserResponse, IToken>({
+      query: ({ id, token }) => ({
+        url: TOKENS(id),
+        headers: getAuthHeaders(token),
+        method: 'GET',
+      }),
+    }),
+    getUser: build.mutation<IUserResponse, IUser>({
+      query: (body) => ({ url: SIGNING, headers: getAuthHeaders(), method: 'POST', body }),
     }),
     addUser: build.mutation<IUser, IUser>({
-      query: (body) => ({ url: 'users', headers: HEADERS, method: 'POST', body }),
-      invalidatesTags: ['user'],
+      query: (body) => ({ url: USERS, headers: getAuthHeaders(), method: 'POST', body }),
     }),
   }),
 });
 
-export const { useGetWordsQuery, useAddUserMutation } = learnWordsAPI;
+export const { useGetWordsQuery, useGetUserMutation, useAddUserMutation, useUpdateTokenMutation } =
+  learnWordsAPI;

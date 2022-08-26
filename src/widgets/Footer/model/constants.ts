@@ -1,7 +1,7 @@
-const gitData = [
+const GIT_DATA = [
   { link: 'https://github.com/puptup', name: 'Kiryl Kashavar' },
-  { link: 'https://github.com/qubero', name: 'KVladislav Mamaev' },
+  { link: 'https://github.com/qubero', name: 'Vladislav Mamaev' },
   { link: 'https://github.com/diXrom', name: 'Timur Tolegen' },
 ];
 
-export { gitData };
+export { GIT_DATA };

@@ -2,7 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from '@emotion/react';
 
 import MainPage from 'pages/MainPage';
-import DrawerLayout from 'widgets/DrawerLayout';
+import { DrawerLayout } from 'widgets/DrawerLayout';
 import ErrorBoundary from 'widgets/Error';
 import { GameInit, GAMES_TITLES } from 'widgets/Games';
 import { ROUTE_PATH } from 'shared/constants';

@@ -22,4 +22,10 @@ const AppBar = styled(MuiAppBar, {
   }),
 }));
 
-export { AppBar };
+const iconStyle = (open: boolean) => ({
+  marginRight: 3,
+  fontSize: 0,
+  display: open ? 'none' : 'block',
+});
+
+export { AppBar, iconStyle };
