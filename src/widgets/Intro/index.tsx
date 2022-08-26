@@ -10,7 +10,7 @@ const Intro = () => {
     <Stack
       direction={{ xs: 'column', lg: 'row' }}
       spacing={4}
-      sx={{ height: '90vh', marginY: 4, justifyContent: 'center', alignItems: 'center' }}
+      sx={{ height: '90vh', mb: 4, justifyContent: 'center', alignItems: 'center' }}
       component={motion.section}
       initial="hidden"
       whileInView="visible"
