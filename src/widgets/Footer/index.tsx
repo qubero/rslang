@@ -4,7 +4,7 @@ import { GitHub } from '@mui/icons-material';
 
 import { ReactComponent as RSS } from './assets/logo_RSS.svg';
 import { BlackTooltip } from './lib/styles';
-import { gitData } from './model/data';
+import { GIT_DATA } from './model/constants';
 
 const Footer = () => (
   <Toolbar sx={{ bgcolor: '#000', mt: 'auto', justifyContent: 'space-between' }}>
@@ -23,7 +23,7 @@ const Footer = () => (
       <Typography variant="h6" component="div" color="secondary" sx={{ mr: 1 }}>
         2022
       </Typography>
-      {gitData.map((data) => (
+      {GIT_DATA.map((data) => (
         <Link
           key={data.name}
           href={data.link}
