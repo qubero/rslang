@@ -8,9 +8,11 @@ const useLocalStorage = <T>(initialValue: T, key: string): [T, Dispatch<SetState
     return storage ? JSON.parse(storage) : initialValue;
   };
   const [value, setValue] = useState(getValue);
+
   useEffect(() => {
     localStorage.setItem(key, JSON.stringify(value));
   }, [value, key]);
+
   return [value, setValue];
 };
 
@@ -23,6 +25,7 @@ const useRefreshToken = (
     const data = await updateToken({ id, token: refreshToken }).unwrap();
     setUserAuth((state) => ({ ...state, ...data }));
   };
+
   useEffect(() => {
     if (userAuth) getToken(userAuth.userId, userAuth.refreshToken);
     // eslint-disable-next-line react-hooks/exhaustive-deps

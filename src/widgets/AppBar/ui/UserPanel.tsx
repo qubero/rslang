@@ -8,6 +8,7 @@ type IUserPanel = {
   setModal: Dispatch<SetStateAction<boolean>>;
   setUserAuth: Dispatch<SetStateAction<IUserResponse | null>>;
 };
+
 const UserPanel = (props: IUserPanel) => {
   const { userAuth, setModal, setUserAuth } = props;
   const UserLogout = (user: IUserResponse) => (
