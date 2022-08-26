@@ -1,4 +1,4 @@
-const isAuthHeader = (token?: string) => {
+const getAuthHeaders = (token?: string) => {
   const headers = {
     Accept: 'application/json',
     'Content-Type': 'application/json',
@@ -6,4 +6,4 @@ const isAuthHeader = (token?: string) => {
   return token ? { ...headers, Authorization: `Bearer ${token}` } : headers;
 };
 
-export { isAuthHeader };
+export { getAuthHeaders };
