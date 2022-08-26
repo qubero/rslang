@@ -1,3 +1,5 @@
+import { memo } from 'react';
+import { motion } from 'framer-motion';
 import {
   Unstable_Grid2 as Grid,
   Stack,
@@ -8,18 +10,9 @@ import {
   CardMedia,
   Divider,
 } from '@mui/material';
-import { motion } from 'framer-motion';
-import { cardData } from './model/data';
 
-const cardAnimation = {
-  hidden: {
-    opacity: 0,
-  },
-  visible: (custom: number) => ({
-    opacity: 1,
-    transition: { delay: custom * 0.3 },
-  }),
-};
+import { fadeAnimation } from 'shared/lib/styles';
+import { cardData } from './model/data';
 
 const OurAbility = () => {
   return (
@@ -34,7 +27,7 @@ const OurAbility = () => {
         variant="h4"
         sx={{ fontWeight: 'bold' }}
         component={motion.h4}
-        variants={cardAnimation}
+        variants={fadeAnimation}
       >
         Наши возможности
       </Typography>
@@ -44,7 +37,7 @@ const OurAbility = () => {
             <Card
               sx={{ maxWidth: 300 }}
               component={motion.div}
-              variants={cardAnimation}
+              variants={fadeAnimation}
               custom={i + 1}
             >
               <CardActionArea>
@@ -67,4 +60,4 @@ const OurAbility = () => {
   );
 };
 
-export default OurAbility;
+export default memo(OurAbility);
