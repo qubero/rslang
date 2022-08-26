@@ -59,11 +59,6 @@ const MiniDrawer: FC<IMiniDrawerProps> = (props) => {
         </ListItem>
       </List>
       <Divider />
-      <Box sx={{ mt: 'auto' }}>
-        <ListItem text="Выйти" open={open}>
-          <Logout color="primary" />
-        </ListItem>
-      </Box>
     </Drawer>
   );
 };

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { ROUTE_PATH } from 'shared/constants';
 
@@ -8,17 +8,17 @@ const useDrawer = () => {
   const { pathname } = useLocation();
   const { SPRINT, AUDIOCALL } = ROUTE_PATH;
 
-  const handleToggle = () => {
-    setToggle((state) => !state);
-  };
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-  const handleDrawerClose = () => {
+  const handleToggle = useCallback(() => setToggle((state) => !state), []);
+  const handleDrawerOpen = useCallback(() => setOpen(true), []);
+  const handleDrawerClose = useCallback(() => {
     setOpen(false);
     setToggle(false);
-  };
-  const hasFooter = () => pathname !== `/${SPRINT}` && pathname !== `/${AUDIOCALL}`;
+  }, []);
+
+  const hasFooter = useCallback(
+    () => () => pathname !== `/${SPRINT}` && pathname !== `/${AUDIOCALL}`,
+    [AUDIOCALL, SPRINT, pathname]
+  );
 
   return { open, toggle, handleDrawerOpen, handleDrawerClose, handleToggle, hasFooter };
 };
