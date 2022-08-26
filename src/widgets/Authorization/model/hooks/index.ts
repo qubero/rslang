@@ -5,7 +5,7 @@ import { useAddUserMutation, useGetUserMutation } from 'shared/api';
 import { IUserResponse } from 'shared/api/lib/types';
 import { validationSchema } from 'widgets/Authorization/lib/util';
 
-const useCustomFormik = (
+const useAuthFormik = (
   handlerClose: () => void,
   setUserAuth: Dispatch<SetStateAction<IUserResponse | null>>
 ) => {
@@ -35,4 +35,4 @@ const useCustomFormik = (
   return { formik, isLogin, isLoading, setLogin };
 };
 
-export { useCustomFormik };
+export { useAuthFormik };

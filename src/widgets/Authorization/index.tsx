@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction } from 'react';
 import { TextField, Stack, Typography } from '@mui/material';
 
 import { IUserResponse } from 'shared/api/lib/types';
-import { useCustomFormik } from './model/hooks';
+import { useAuthFormik } from './model/hooks';
 import ControlPanel from './ui/ControlPanel';
 
 type AuthorizationProps = {
@@ -12,7 +12,7 @@ type AuthorizationProps = {
 
 const Authorization = (props: AuthorizationProps) => {
   const { handlerClose, setUserAuth } = props;
-  const { formik, isLogin, isLoading, setLogin } = useCustomFormik(handlerClose, setUserAuth);
+  const { formik, isLogin, isLoading, setLogin } = useAuthFormik(handlerClose, setUserAuth);
 
   return (
     <form onSubmit={formik.handleSubmit}>
