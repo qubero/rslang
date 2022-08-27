@@ -1,9 +1,9 @@
 import { GAMES, IGameSettings, IGameTitle } from '../model/constants';
 import useGameSetup from '../model/hooks/useGameSetup';
 
-type GameSetupProps = { game: IGameTitle; settings: IGameSettings };
+type IGameSetupProps = { game: IGameTitle; settings: IGameSettings };
 
-const GameSetup = ({ game, settings }: GameSetupProps) => {
+const GameSetup = ({ game, settings }: IGameSetupProps) => {
   const { component: Game } = GAMES[game];
   const { isReady, isError, words } = useGameSetup(settings);
 

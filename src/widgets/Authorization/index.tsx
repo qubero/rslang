@@ -5,12 +5,12 @@ import { IUserResponse } from 'shared/api/lib/types';
 import { useAuthFormik } from './model/hooks';
 import ControlPanel from './ui/ControlPanel';
 
-type AuthorizationProps = {
+type IAuthorizationProps = {
   handlerClose: () => void;
   setUserAuth: Dispatch<SetStateAction<IUserResponse | null>>;
 };
 
-const Authorization = (props: AuthorizationProps) => {
+const Authorization = (props: IAuthorizationProps) => {
   const { handlerClose, setUserAuth } = props;
   const { formik, isLogin, isLoading, setLogin } = useAuthFormik(handlerClose, setUserAuth);
 
