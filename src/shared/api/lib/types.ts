@@ -1,7 +1,5 @@
 interface IWord {
-  _id: {
-    $oid: string;
-  };
+  id: string;
   group: number;
   page: number;
   word: string;
@@ -12,7 +10,6 @@ interface IWord {
   textMeaning: string;
   textExample: string;
   transcription: string;
-  __v: number;
   textExampleTranslate: string;
   textMeaningTranslate: string;
   wordTranslate: string;
