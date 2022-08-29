@@ -1,6 +1,6 @@
-import * as CONST from './model/constants';
 import useAggregatedWords from './model/hooks/useAggregatedWords';
 import useNonAggregatedWords from './model/hooks/useNonAggregatedWords';
 import useUserWord from './model/hooks/useUserWord';
+import { getAggregatedWordsFilter } from './model/utils';
 
-export { CONST, useUserWord, useAggregatedWords, useNonAggregatedWords };
+export { useUserWord, useAggregatedWords, useNonAggregatedWords, getAggregatedWordsFilter };

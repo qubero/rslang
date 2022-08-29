@@ -28,9 +28,6 @@ const LEARNED_USER_WORD = {
   },
 };
 
-const DEFAULT_HARD_FILTER = '{"$and":[{"userWord.difficulty":"hard"}]}';
-const DEFAULT_LEARNED_FILTER = '{"$and":[{"userWord.difficulty":"easy"}]}';
-
 export {
   MIN_CORRECT_COUNT,
   MIN_HARD_CORRECT_COUNT,
@@ -38,6 +35,4 @@ export {
   INITIAL_USER_WORD,
   LEARNED_USER_WORD,
   HARD_USER_WORD,
-  DEFAULT_HARD_FILTER,
-  DEFAULT_LEARNED_FILTER,
 };
