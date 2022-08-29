@@ -1,7 +1,5 @@
 interface IWord {
-  _id: {
-    $oid: string;
-  };
+  id: string;
   group: number;
   page: number;
   word: string;
@@ -42,4 +40,51 @@ interface IToken {
   token: string;
 }
 
-export type { IWord, IWordsQuery, IUser, IUserResponse, IToken };
+type IUserWordDifficulty = 'easy' | 'hard';
+
+interface IUserWord {
+  id: Pick<IUserResponse, 'userId'>;
+  wordId: string;
+  difficulty: IUserWordDifficulty;
+  optional: {
+    isLearned: boolean;
+    learnProgress: number;
+  };
+}
+
+type IUserWordRequestPayload = Omit<IUserWord, 'id' | 'wordId'>;
+
+interface IUserWordRequest {
+  auth: IToken;
+  wordId: string;
+  body?: IUserWordRequestPayload;
+}
+
+interface IAggregatedWordsRequest {
+  auth: IToken;
+  params: {
+    page?: number;
+    group?: number;
+    wordsPerPage?: number;
+    filter?: string;
+  };
+}
+
+interface IAggregatedWordsResponse {
+  paginatedResults: Array<IWord & { _id: string }>;
+  totalCount: Array<{ count: number }>;
+}
+
+export type {
+  IWord,
+  IWordsQuery,
+  IUser,
+  IUserResponse,
+  IToken,
+  IUserWord,
+  IUserWordRequest,
+  IUserWordRequestPayload,
+  IUserWordDifficulty,
+  IAggregatedWordsRequest,
+  IAggregatedWordsResponse,
+};
