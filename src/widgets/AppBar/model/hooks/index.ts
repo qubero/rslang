@@ -22,8 +22,12 @@ const useRefreshToken = (
 ) => {
   const [updateToken] = useUpdateTokenMutation();
   const getToken = async (id: string, refreshToken: string) => {
-    const data = await updateToken({ id, token: refreshToken }).unwrap();
-    setUserAuth((state) => ({ ...state, ...data }));
+    try {
+      const data = await updateToken({ id, token: refreshToken }).unwrap();
+      setUserAuth((state) => ({ ...state, ...data }));
+    } catch (e) {
+      localStorage.setItem('Team30-UserAuth', 'null');
+    }
   };
 
   useEffect(() => {

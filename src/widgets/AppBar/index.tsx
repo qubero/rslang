@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, memo, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Toolbar, Typography, IconButton, Box } from '@mui/material';
 import { Language, Menu } from '@mui/icons-material';
@@ -42,4 +42,4 @@ const AppBar: FC<IAppBarProps> = (props) => {
   );
 };
 
-export default AppBar;
+export default memo(AppBar);

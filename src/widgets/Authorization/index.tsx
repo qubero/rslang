@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, memo, SetStateAction } from 'react';
 import { TextField, Stack, Typography } from '@mui/material';
 
 import { IUserResponse } from 'shared/api/lib/types';
@@ -54,4 +54,4 @@ const Authorization = (props: IAuthorizationProps) => {
   );
 };
 
-export default Authorization;
+export default memo(Authorization);

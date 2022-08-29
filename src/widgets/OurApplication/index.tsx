@@ -1,15 +1,9 @@
-import { Box, Stack, Typography, CardMedia } from '@mui/material';
+import { memo } from 'react';
 import { motion } from 'framer-motion';
+import { Box, Stack, Typography, CardMedia } from '@mui/material';
 
-const videoAnimation = {
-  hidden: {
-    opacity: 0,
-  },
-  visible: (custom: number) => ({
-    opacity: 1,
-    transition: { delay: custom * 0.3 },
-  }),
-};
+import { fadeAnimation } from 'shared/lib/styles';
+import { styleIframe } from './lib/styles';
 
 const OurApplication = () => {
   return (
@@ -24,22 +18,11 @@ const OurApplication = () => {
         variant="h4"
         sx={{ fontWeight: 'bold' }}
         component={motion.h4}
-        variants={videoAnimation}
+        variants={fadeAnimation}
       >
         Наше Приложение
       </Typography>
-      <Box
-        sx={{
-          width: '95%',
-          height: { xs: '60vw', xl: '40vw' },
-          border: '4px solid black',
-          borderRadius: '10px',
-          marginY: 4,
-        }}
-        component={motion.div}
-        custom={2}
-        variants={videoAnimation}
-      >
+      <Box sx={styleIframe} component={motion.div} custom={2} variants={fadeAnimation}>
         <CardMedia
           component="iframe"
           allow="fullscreen; accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -53,4 +36,4 @@ const OurApplication = () => {
   );
 };
 
-export default OurApplication;
+export default memo(OurApplication);

@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { Box, List, Typography, Divider, IconButton, Collapse } from '@mui/material';
 import {
   ChevronLeft,
@@ -63,4 +63,4 @@ const MiniDrawer: FC<IMiniDrawerProps> = (props) => {
   );
 };
 
-export default MiniDrawer;
+export default memo(MiniDrawer);
