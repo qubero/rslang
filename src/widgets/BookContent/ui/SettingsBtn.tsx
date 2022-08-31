@@ -73,7 +73,9 @@ const SettingsBtn = ({ item }: ISettingsBtn) => {
           FabProps={{ disabled: userWord?.optional.isLearned && true }}
         />
         <SpeedDialAction
-          tooltipTitle={`Прогресс ${userWord ? userWord.optional.learnProgress : 0}/3`}
+          tooltipTitle={`Прогресс ${userWord ? userWord.optional.learnProgress : 0}/${
+            userWord?.difficulty === 'hard' ? '5' : '3'
+          }`}
           icon={<Leaderboard color={muiColor[2]} fontSize="small" />}
           FabProps={{ disabled: true }}
           tooltipOpen
