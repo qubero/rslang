@@ -52,7 +52,7 @@ export const userWordsApi = createApi({
         method: 'POST',
         body,
       }),
-      invalidatesTags: [TAG.USER_WORDS, TAG.USER_WORD],
+      invalidatesTags: [TAG.USER_WORDS, TAG.USER_WORD, TAG.AGGREGATED_WORDS],
     }),
     updateUserWord: build.mutation<IUserWord, IUserWordRequest>({
       query: ({ auth: { id, token }, wordId, body }) => ({
@@ -61,7 +61,7 @@ export const userWordsApi = createApi({
         method: 'PUT',
         body,
       }),
-      invalidatesTags: [TAG.USER_WORDS, TAG.USER_WORD],
+      invalidatesTags: [TAG.USER_WORDS, TAG.USER_WORD, TAG.AGGREGATED_WORDS],
     }),
     deleteUserWord: build.mutation<Record<string, never>, IUserWordRequest>({
       query: ({ auth: { id, token }, wordId }) => ({
@@ -69,7 +69,7 @@ export const userWordsApi = createApi({
         headers: getAuthHeaders(token),
         method: 'DELETE',
       }),
-      invalidatesTags: [TAG.USER_WORDS, TAG.USER_WORD],
+      invalidatesTags: [TAG.USER_WORDS, TAG.USER_WORD, TAG.AGGREGATED_WORDS],
     }),
   }),
 });

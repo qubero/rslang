@@ -5,4 +5,7 @@ const ROUTE_PATH = {
   AUDIOCALL: 'audiocall',
   INFO: 'info',
 };
-export { ROUTE_PATH };
+
+const STORAGE_AUTH_USER = 'Team30-UserAuth';
+
+export { ROUTE_PATH, STORAGE_AUTH_USER };

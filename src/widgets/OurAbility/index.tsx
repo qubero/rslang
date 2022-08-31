@@ -31,11 +31,11 @@ const OurAbility = () => {
       >
         Наши возможности
       </Typography>
-      <Grid container spacing={3} sx={{ marginY: 4, maxWidth: { md: 650, xl: '100%' } }}>
+      <Grid container spacing={3} sx={{ marginY: 4, width: { md: 650, xl: '100%' } }}>
         {cardData.map((card, i) => (
           <Grid sm={12} md={6} xl={3} display="flex" justifyContent="center" key={card.title}>
             <Card
-              sx={{ maxWidth: 300 }}
+              sx={{ maxWidth: 350 }}
               component={motion.div}
               variants={fadeAnimation}
               custom={i + 1}
@@ -45,7 +45,6 @@ const OurAbility = () => {
                 <CardContent>
                   <Typography variant="h5" gutterBottom component="div" sx={{ fontWeight: 'bold' }}>
                     {card.title}
-                    <Divider color="#FDF500" sx={{ height: 2, width: '100%' }} />
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
                     {card.description}

@@ -28,6 +28,7 @@ const useAuthFormik = (
         setErrors({ password: isLogin ? 'Неверный email или пароль' : 'Этот email уже занят' });
       } finally {
         setLoading(false);
+        window.location.reload();
       }
     },
   });

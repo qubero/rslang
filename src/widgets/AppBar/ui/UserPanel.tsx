@@ -12,7 +12,13 @@ type IUserPanel = {
 const UserPanel = (props: IUserPanel) => {
   const { userAuth, setModal, setUserAuth } = props;
   const UserLogout = (user: IUserResponse) => (
-    <IconButton color="secondary" onClick={() => setUserAuth(null)}>
+    <IconButton
+      color="secondary"
+      onClick={() => {
+        setUserAuth(null);
+        window.location.reload();
+      }}
+    >
       <Typography variant="h6" component="div">
         {user.name}
       </Typography>

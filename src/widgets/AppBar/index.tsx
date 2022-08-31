@@ -6,16 +6,16 @@ import { Language, Menu } from '@mui/icons-material';
 import Authorization from 'widgets/Authorization';
 import ModalInfo from 'shared/ui/Modal';
 import { IUserResponse } from 'shared/api/lib/types';
+import { STORAGE_AUTH_USER } from 'shared/constants';
 import { IAppBarProps } from './lib/types';
 import { iconStyle, AppBar as BarHeader } from './lib/styles';
-import { useLocalStorage, useRefreshToken } from './model/hooks';
+import { useLocalStorage } from './model/hooks';
 import UserPanel from './ui/UserPanel';
 
 const AppBar: FC<IAppBarProps> = (props) => {
   const { open, handleDrawerOpen } = props;
   const [modalToggle, setModalToggle] = useState(false);
-  const [userAuth, setUserAuth] = useLocalStorage<IUserResponse | null>(null, 'Team30-UserAuth');
-  useRefreshToken(userAuth, setUserAuth);
+  const [userAuth, setUserAuth] = useLocalStorage<IUserResponse | null>(null, STORAGE_AUTH_USER);
 
   return (
     <BarHeader position="fixed" open={open}>
