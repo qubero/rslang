@@ -1,12 +1,12 @@
-import { Dispatch, SetStateAction, useCallback, useEffect, useMemo, useState } from 'react';
+import { Dispatch, memo, SetStateAction, useCallback, useEffect, useMemo, useState } from 'react';
 import { Howl } from 'howler';
 import { PlayArrow, Stop } from '@mui/icons-material';
-import { IconButton } from '@mui/material';
+import { Fab } from '@mui/material';
 import { API_URL } from 'shared/api/model/constants';
-import { themeColor } from '../lib/styles';
+import { themeColor } from 'widgets/BookHeader/lib/styles';
+import { useQueryParams } from 'widgets/BookHeader/model/hooks/useQuery';
 
 type SoundBtnProps = {
-  group: string;
   id: string;
   userId: string;
   srcAudio: string;
@@ -16,7 +16,8 @@ type SoundBtnProps = {
 };
 
 const SoundBtn = (props: SoundBtnProps) => {
-  const { srcAudio, srcMeaning, srcExample, setUserId, id, userId, group } = props;
+  const { group } = useQueryParams();
+  const { srcAudio, srcMeaning, srcExample, setUserId, id, userId } = props;
   const meaning = useMemo(() => new Howl({ src: [`${API_URL}${srcExample}`] }), [srcExample]);
   const example = useMemo(
     () => new Howl({ src: [`${API_URL}${srcMeaning}`], onend: () => meaning.play() }),
@@ -48,10 +49,19 @@ const SoundBtn = (props: SoundBtnProps) => {
   }, [playing, audio, stopAudio, id, userId]);
 
   return (
-    <IconButton sx={{ color: `#${themeColor[Number(group)]}`, p: '2px' }} onClick={playAudio}>
+    <Fab
+      sx={{
+        color: `#${themeColor[Number(group)]}`,
+        p: '5px',
+        width: '45px',
+        height: '45px',
+        backgroundColor: 'white',
+      }}
+      onClick={playAudio}
+    >
       {playing ? <Stop fontSize="large" /> : <PlayArrow fontSize="large" />}
-    </IconButton>
+    </Fab>
   );
 };
 
-export default SoundBtn;
+export default memo(SoundBtn);

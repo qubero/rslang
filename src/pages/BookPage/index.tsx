@@ -1,17 +1,14 @@
-import { useMemo } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Stack } from '@mui/material';
 
-import { useSearchParams } from 'react-router-dom';
-import GroupPanel from './ui/GroupPanel';
-import WordsPanel from './ui/WordsPanel';
+import WordsPanel from 'widgets/BookContent/WordsPanel';
+import GroupPanel from 'widgets/BookHeader/GroupPanel';
 import './lib/style.scss';
 
 const BookPage = () => {
-  const [query, setQuery] = useSearchParams();
-  const group = useMemo(() => query.get('group') || '0', [query]);
-  const page = useMemo(() => query.get('page') || '0', [query]);
-  console.log('render');
+  const [isLearning, setLearning] = useState(false);
+
   return (
     <Stack
       component={motion.section}
@@ -21,8 +18,8 @@ const BookPage = () => {
       viewport={{ once: true }}
       sx={{ mt: 3 }}
     >
-      <GroupPanel group={group} setQuery={setQuery} />
-      <WordsPanel group={group} page={page} setQuery={setQuery} />
+      <GroupPanel isLearning={isLearning} />
+      <WordsPanel setLearning={setLearning} />
     </Stack>
   );
 };
