@@ -1,11 +1,14 @@
+body {
+  overflow-y: scroll;
+}
 .MuiPagination-root.Pagination2e7d32 {
   button.Mui-selected {
     background-color: #2e7d32;
   }
-  button{
-    &:hover{
+  button {
+    &:hover {
       background-color: #2e7d32a8;
-      transition: background-color .4s ease
+      transition: background-color 0.4s ease;
     }
   }
 }
@@ -13,10 +16,10 @@
   button.Mui-selected {
     background-color: #ed6c02;
   }
-  button{
-    &:hover{
+  button {
+    &:hover {
       background-color: #ed6c02a9;
-      transition: background-color .4s ease
+      transition: background-color 0.4s ease;
     }
   }
 }
@@ -25,10 +28,10 @@
   button.Mui-selected {
     background-color: #d32f2f;
   }
-  button{
-    &:hover{
+  button {
+    &:hover {
       background-color: #d32f2fa8;
-      transition: background-color .4s ease
+      transition: background-color 0.4s ease;
     }
   }
 }
@@ -36,10 +39,30 @@
   button.Mui-selected {
     background-color: #0288d1;
   }
-  button{
-    &:hover{
+  button {
+    &:hover {
       background-color: #0289d1a0;
-      transition: background-color .4s ease
+      transition: background-color 0.4s ease;
     }
   }
 }
+.MuiPagination-root.PaginationLearn {
+  button.Mui-selected {
+    background-color: #FDF500;
+  }
+}
+
+#SpeedDial-action-2-label {
+  white-space: nowrap;
+  background-color: #ed6c02;
+  color: white;
+}
+#SpeedDial-action-1-label {
+  background-color: #2e7d32;
+  color: white;
+}
+#SpeedDial-action-0-label {
+  background-color: #d32f2f;
+  color: white;
+}
+

@@ -36,36 +36,47 @@ const useUserWord = (wordId: string) => {
   const [updateUserWord] = useUpdateUserWordMutation();
   const [deleteUserWord] = useDeleteUserWordMutation();
 
-  const checkWord = async () => {
-    if (!wordRef.current) {
+  const updateWord = async (body: typeof INITIAL_USER_WORD | null = null) => {
+    if (skip) return;
+
+    if (!wordRef.current && body) {
       try {
-        const query = { auth, wordId, body: INITIAL_USER_WORD };
-        wordRef.current = await createUserWord(query).unwrap();
-      } catch {}
+        wordRef.current = await createUserWord({ auth, wordId, body }).unwrap();
+      } catch {
+        return;
+      }
+    } else {
+      try {
+        if (body) {
+          wordRef.current = await updateUserWord({ auth, wordId, body }).unwrap();
+        } else {
+          await deleteUserWord({ auth, wordId }).unwrap();
+          wordRef.current = null;
+        }
+      } catch {
+        return;
+      }
     }
   };
 
+  const markAsNew = async () => {
+    await updateWord(INITIAL_USER_WORD);
+  };
+
   const markAsDifficult = async () => {
-    if (skip) return;
-    await checkWord();
-    updateUserWord({ auth, wordId, body: HARD_USER_WORD });
+    await updateWord(HARD_USER_WORD);
   };
 
   const markAsLearned = async () => {
-    if (skip) return;
-    await checkWord();
-    updateUserWord({ auth, wordId, body: LEARNED_USER_WORD });
+    await updateWord(LEARNED_USER_WORD);
   };
 
   const handleDelete = async () => {
-    if (skip) return;
-    await checkWord();
-    deleteUserWord({ auth, wordId });
+    await updateWord();
   };
 
   const handleSuccess = async () => {
-    if (skip) return;
-    await checkWord();
+    if (!wordRef.current) await markAsNew();
     if (!wordRef.current || wordRef.current.optional.isLearned) return;
 
     const { difficulty, optional } = { ...wordRef.current };
@@ -77,14 +88,15 @@ const useUserWord = (wordId: string) => {
         : learnProgress >= MIN_CORRECT_COUNT;
 
     if (isLearned) {
-      markAsLearned();
+      await markAsLearned();
     } else {
       const body = { difficulty, optional: { ...optional, learnProgress } };
-      updateUserWord({ auth, wordId, body });
+      await updateWord(body);
     }
   };
 
   return {
+    markAsNew,
     markAsDifficult,
     markAsLearned,
     handleDelete,

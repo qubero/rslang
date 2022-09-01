@@ -33,7 +33,6 @@ const useAggregatedWords = (params: IUseWordsParams) => {
 
     if (!isReady && !isWordsLoading && isLoadedOnce) {
       wordsRef.current = [...wordsRef.current, ...words].slice(0, MIN_WORDS_FOR_GAME_COUNT);
-
       setIsReady(true);
     }
   }, [isReady, wordsQuery]);
@@ -42,6 +41,8 @@ const useAggregatedWords = (params: IUseWordsParams) => {
     isReady,
     isError: wordsQuery.isFetchError,
     words: wordsRef.current,
+    data: wordsQuery.words,
+    isWordsLoading: wordsQuery.isWordsLoading,
   };
 };
 

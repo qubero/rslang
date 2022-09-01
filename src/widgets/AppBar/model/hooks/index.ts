@@ -1,6 +1,7 @@
 import { useState, useEffect, Dispatch, SetStateAction } from 'react';
 import { useUpdateTokenMutation } from 'shared/api';
 import { IUserResponse } from 'shared/api/lib/types';
+import { STORAGE_AUTH_USER } from 'shared/constants';
 
 const useLocalStorage = <T>(initialValue: T, key: string): [T, Dispatch<SetStateAction<T>>] => {
   const getValue = (): T => {
@@ -23,10 +24,10 @@ const useRefreshToken = (
   const [updateToken] = useUpdateTokenMutation();
   const getToken = async (id: string, refreshToken: string) => {
     try {
-      const data = await updateToken({ id, token: refreshToken }).unwrap();
-      setUserAuth((state) => ({ ...state, ...data }));
+      const authData = await updateToken({ id, token: refreshToken }).unwrap();
+      setUserAuth((state) => ({ ...state, ...authData }));
     } catch (e) {
-      localStorage.setItem('Team30-UserAuth', 'null');
+      localStorage.setItem(STORAGE_AUTH_USER, 'null');
     }
   };
 

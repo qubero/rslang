@@ -13,6 +13,10 @@ interface IWord {
   textExampleTranslate: string;
   textMeaningTranslate: string;
   wordTranslate: string;
+  userWord?: {
+    difficulty: 'hard' | 'easy';
+    optional: { isLearned: boolean; learnProgress: number };
+  };
 }
 
 interface IWordsQuery {

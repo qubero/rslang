@@ -1,5 +1,5 @@
 const styleIframe = {
-  width: '95%',
+  width: '98.5%',
   height: { xs: '60vw', xl: '40vw' },
   border: '4px solid black',
   borderRadius: '10px',
