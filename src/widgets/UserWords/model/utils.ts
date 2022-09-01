@@ -27,7 +27,7 @@ export const getAggregatedWordsFilter = (
     } else {
       return isLearned === null
         ? `{ "$and": [{ "page": ${page} }, {"group": ${group} }] }`
-        : `{ "$and": [{ "page": ${page} }, {"group": ${group} }, { "userWord.optional.isLearned": ${isLearned} }] }`;
+        : `{ "$and": [ { "$or": [ { "userWord": null }, { "userWord.optional.isLearned": ${isLearned} } ] }, { "page": ${page} }, {"group": ${group} } ] }`;
     }
   }
 };

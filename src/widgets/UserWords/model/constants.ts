@@ -1,30 +1,36 @@
-import { IUserWordDifficulty } from 'shared/api/lib/types';
+import { IUserWord, IUserWordDifficulty } from 'shared/api/lib/types';
 
 const MIN_CORRECT_COUNT = 3;
 const MIN_HARD_CORRECT_COUNT = 5;
 const STEP = 1;
 
-const INITIAL_USER_WORD = {
+const INITIAL_USER_WORD: Pick<IUserWord, 'optional' | 'difficulty'> = {
   difficulty: 'easy' as IUserWordDifficulty,
   optional: {
     isLearned: false,
     learnProgress: 0,
+    createdAt: null,
+    updatedAt: null,
   },
 };
 
-const HARD_USER_WORD = {
+const HARD_USER_WORD: Pick<IUserWord, 'optional' | 'difficulty'> = {
   difficulty: 'hard' as IUserWordDifficulty,
   optional: {
     isLearned: false,
     learnProgress: 0,
+    createdAt: null,
+    updatedAt: null,
   },
 };
 
-const LEARNED_USER_WORD = {
+const LEARNED_USER_WORD: Pick<IUserWord, 'optional' | 'difficulty'> = {
   difficulty: 'easy' as IUserWordDifficulty,
   optional: {
     isLearned: true,
     learnProgress: MIN_CORRECT_COUNT,
+    createdAt: null,
+    updatedAt: null,
   },
 };
 

@@ -52,6 +52,8 @@ interface IUserWord {
   optional: {
     isLearned: boolean;
     learnProgress: number;
+    createdAt: string | null;
+    updatedAt: string | null;
   };
 }
 
