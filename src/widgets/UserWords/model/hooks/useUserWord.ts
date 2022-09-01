@@ -79,8 +79,20 @@ const useUserWord = (wordId: string) => {
   };
 
   const handleSuccess = async () => {
-    if (!wordRef.current) await markAsNew();
-    if (!wordRef.current || wordRef.current.optional.isLearned) return;
+    if (!wordRef.current) {
+      const body = {
+        ...INITIAL_USER_WORD,
+        optional: {
+          ...INITIAL_USER_WORD.optional,
+          learnProgress: STEP,
+        },
+      };
+      await updateWord(body);
+
+      return;
+    }
+
+    if (wordRef.current.optional.isLearned) return;
 
     const { difficulty, optional } = { ...wordRef.current };
     const learnProgress = optional.learnProgress + STEP;
@@ -98,12 +110,32 @@ const useUserWord = (wordId: string) => {
     }
   };
 
+  const handleFail = async () => {
+    if (!wordRef.current) {
+      await updateWord(INITIAL_USER_WORD);
+    } else {
+      const { difficulty, optional } = { ...wordRef.current };
+      const learnProgress = optional.learnProgress >= STEP ? optional.learnProgress - STEP : 0;
+
+      const body = {
+        difficulty,
+        optional: {
+          ...optional,
+          learnProgress,
+          isLearned: false,
+        },
+      };
+      await updateWord(body);
+    }
+  };
+
   return {
     markAsNew,
     markAsDifficult,
     markAsLearned,
     handleDelete,
     handleSuccess,
+    handleFail,
   };
 };
 
