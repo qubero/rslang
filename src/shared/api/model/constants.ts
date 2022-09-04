@@ -9,6 +9,7 @@ const API_PATH = {
   AGGREGATED_WORDS: (id: string) => `users/${id}/aggregatedWords`,
   SIGNING: 'signin',
   TOKENS: (id: string) => `users/${id}/tokens`,
+  STATISTICS: (id: string) => `/users/${id}/statistics`,
 };
 
 const TAG = {
@@ -20,6 +21,7 @@ const TAG = {
   AGGREGATED_WORDS: 'AGGREGATED_WORDS',
   SIGNING: 'SIGNING',
   TOKENS: 'TOKENS',
+  STATISTICS: 'STATISTICS',
 };
 
 export { API_URL, API_PATH, TAG };
