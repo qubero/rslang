@@ -13,7 +13,7 @@ const useNonAggregatedWords = (initSettings: IGameSettings) => {
   const wordsQuery = useGetWordsQuery(settings, {
     skip: isAuth,
     selectFromResult: ({ data, isFetching, isLoading, isSuccess, isError }) => ({
-      words: data || [],
+      words: data?.map((w) => ({ ...w, answered: false })) || [],
       isWordsLoading: isFetching || isLoading,
       isLoadedOnce: isSuccess,
       isFetchError: isError,

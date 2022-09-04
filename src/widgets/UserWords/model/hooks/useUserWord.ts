@@ -6,7 +6,7 @@ import {
   useUpdateUserWordMutation,
 } from 'shared/api';
 import { IUserWord } from 'shared/api/lib/types';
-import { formatDate } from 'shared/lib/utils';
+import { getDate } from 'shared/lib/utils';
 import useAuth from 'widgets/Authorization/model/hooks/useAuth';
 import {
   HARD_USER_WORD,
@@ -42,15 +42,17 @@ const useUserWord = (wordId: string) => {
 
     if (!wordRef.current && body) {
       try {
-        body.optional.createdAt = formatDate(new Date());
-        wordRef.current = await createUserWord({ auth, wordId, body }).unwrap();
+        body.optional.createdAt = getDate();
+
+        if (body.optional.createdAt) {
+          wordRef.current = await createUserWord({ auth, wordId, body }).unwrap();
+        }
       } catch {
         return;
       }
     } else {
       try {
         if (body) {
-          body.optional.updatedAt = formatDate(new Date());
           wordRef.current = await updateUserWord({ auth, wordId, body }).unwrap();
         } else {
           await deleteUserWord({ auth, wordId }).unwrap();

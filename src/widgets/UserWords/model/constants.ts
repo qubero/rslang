@@ -10,7 +10,6 @@ const INITIAL_USER_WORD: Pick<IUserWord, 'optional' | 'difficulty'> = {
     isLearned: false,
     learnProgress: 0,
     createdAt: null,
-    updatedAt: null,
   },
 };
 
@@ -20,7 +19,6 @@ const HARD_USER_WORD: Pick<IUserWord, 'optional' | 'difficulty'> = {
     isLearned: false,
     learnProgress: 0,
     createdAt: null,
-    updatedAt: null,
   },
 };
 
@@ -30,7 +28,6 @@ const LEARNED_USER_WORD: Pick<IUserWord, 'optional' | 'difficulty'> = {
     isLearned: true,
     learnProgress: MIN_CORRECT_COUNT,
     createdAt: null,
-    updatedAt: null,
   },
 };
 
