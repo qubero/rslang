@@ -3,9 +3,10 @@ import { ThemeProvider } from '@emotion/react';
 
 import MainPage from 'pages/MainPage';
 import BookPage from 'pages/BookPage';
-import { DrawerLayout } from 'widgets/DrawerLayout';
+import StatisticsPage from 'pages/StatisticsPage';
 import ErrorBoundary from 'widgets/Error';
-import { Game, GAMES_TITLES } from 'widgets/Games';
+import { DrawerLayout } from 'widgets/DrawerLayout';
+import { GameInit, GAMES_TITLES } from 'widgets/Games';
 import { ROUTE_PATH } from 'shared/constants';
 import { theme } from './lib/styles';
 import './lib/style.scss';
@@ -19,7 +20,7 @@ const App = () => (
           <Route path={ROUTE_PATH.BOOK} element={<BookPage />} />
           <Route path={ROUTE_PATH.SPRINT} element={<Game game={GAMES_TITLES[0]} />} />
           <Route path={ROUTE_PATH.AUDIOCALL} element={<Game game={GAMES_TITLES[1]} />} />
-          <Route path={ROUTE_PATH.INFO} element={<div>info</div>} />
+          <Route path={ROUTE_PATH.INFO} element={<StatisticsPage />} />
         </Route>
       </Routes>
     </ErrorBoundary>

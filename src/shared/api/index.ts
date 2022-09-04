@@ -3,8 +3,14 @@ import { userWordsApi } from './model/userWordsApi';
 
 export { learnWordsAPI, userWordsApi };
 
-export const { useGetWordsQuery, useGetUserMutation, useAddUserMutation, useUpdateTokenMutation } =
-  learnWordsAPI;
+export const {
+  useGetWordsQuery,
+  useGetUserMutation,
+  useAddUserMutation,
+  useUpdateTokenMutation,
+  useGetStatisticsQuery,
+  useUpdateStatisticsMutation,
+} = learnWordsAPI;
 
 export const {
   useGetAggregatedWordsQuery,

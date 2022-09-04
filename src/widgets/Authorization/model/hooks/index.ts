@@ -1,9 +1,10 @@
 import { Dispatch, SetStateAction, useState } from 'react';
 import { useFormik } from 'formik';
 
-import { useAddUserMutation, useGetUserMutation } from 'shared/api';
+import { useAddUserMutation, useGetUserMutation, useUpdateStatisticsMutation } from 'shared/api';
 import { IUserResponse } from 'shared/api/lib/types';
 import { validationSchema } from 'widgets/Authorization/lib/util';
+import { INITIAL_STATISTICS } from 'shared/constants';
 
 const useAuthFormik = (
   handlerClose: () => void,
@@ -13,6 +14,7 @@ const useAuthFormik = (
   const [isLoading, setLoading] = useState(false);
   const [createUser] = useAddUserMutation();
   const [getUser] = useGetUserMutation();
+  const [initialStatistics] = useUpdateStatisticsMutation();
 
   const formik = useFormik({
     initialValues: { name: '', email: '', password: '' },
@@ -22,13 +24,15 @@ const useAuthFormik = (
         setLoading(true);
         if (!isLogin) await createUser({ name, email, password }).unwrap();
         const user = await getUser({ email, password }).unwrap();
+        const initial = { id: user.userId, token: user.token, body: INITIAL_STATISTICS };
+        if (!isLogin) initialStatistics(initial);
         setUserAuth(user);
         handlerClose();
+        window.location.reload();
       } catch (error) {
         setErrors({ password: isLogin ? 'Неверный email или пароль' : 'Этот email уже занят' });
       } finally {
         setLoading(false);
-        window.location.reload();
       }
     },
   });
