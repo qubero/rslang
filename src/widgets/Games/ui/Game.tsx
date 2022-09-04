@@ -6,12 +6,13 @@ import GameControls from './GameControls';
 import GameInit from './GameInit';
 
 const Game = ({ game }: { game: IGameTitle }) => {
-  const { fullscreenRef, isMuted, toggleSound, toggleFullscreen } = useGameControls();
+  const { fullscreenRef, isFull, isMuted, toggleSound, toggleFullscreen } = useGameControls();
   const { settings, isStart, handleStart, handleReset, handleGroupChange } = useGameInit();
 
   return (
     <div ref={fullscreenRef} style={{ background: 'white' }}>
       <GameControls
+        isFull={isFull}
         isMuted={isMuted}
         toggleSound={toggleSound}
         toggleFullscreen={toggleFullscreen}
