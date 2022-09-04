@@ -19,7 +19,7 @@ const Sprint = (props: IGameProps) => {
     handleAnswer,
     handleNextStep,
     handleFinish,
-  } = useGame({ ...props, wordsForStepCount: 2 });
+  } = useGame('sprint', { ...props, wordsForStepCount: 2 });
 
   const pointsRef = useRef(0);
 

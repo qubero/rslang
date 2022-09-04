@@ -16,7 +16,7 @@ const AudioCall = (props: IGameProps) => {
     wordsForStep,
     handleAnswer,
     handleNextStep,
-  } = useGame({ ...props, wordsForStepCount: 5 });
+  } = useGame('audiocall', { ...props, wordsForStepCount: 5 });
 
   useEffect(() => {
     const KEYS = ['Digit1', 'Digit2', 'Digit3', 'Digit4', 'Digit5'];

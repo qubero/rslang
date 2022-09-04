@@ -7,7 +7,7 @@ import { INITIAL_STAT } from '../constants';
 import { getWordsForStep } from '../utils';
 import useAudio from './useAudio';
 
-const useGame = (props: IGameProps) => {
+const useGame = (title: string, props: IGameProps) => {
   const { words, isMuted, wordsForStepCount } = props;
   const [isAnswered, setIsAnswered] = useState(false);
   const [isFinished, setIsFinished] = useState(false);
@@ -34,7 +34,7 @@ const useGame = (props: IGameProps) => {
         };
 
         // метод сохранения статистики
-        console.log('finish', stat);
+        console.log('finish', title, stat);
 
         setFinalStat({
           ...stat,
@@ -47,7 +47,7 @@ const useGame = (props: IGameProps) => {
       setFinalStat(null);
       setCurrentWordIndex(0);
     }
-  }, [isFinished, setCurrentWordIndex, words, finalStat, setFinalStat]);
+  }, [title, isFinished, setCurrentWordIndex, words, finalStat, setFinalStat]);
 
   useEffect(() => {
     setWordsForStep(getWordsForStep(words, currentWordIndex, wordsForStepCount));
