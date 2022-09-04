@@ -52,6 +52,7 @@ interface IUserWord {
   optional: {
     isLearned: boolean;
     learnProgress: number;
+    createdAt: string;
   };
 }
 
@@ -78,6 +79,29 @@ interface IAggregatedWordsResponse {
   totalCount: Array<{ count: number }>;
 }
 
+interface IStatistic {
+  learnedWords: number;
+  optional: {
+    newWords: { [key: string]: number };
+    famousWords: { [key: string]: number };
+    sprint: IGameStatistic;
+    audiocall: IGameStatistic;
+  };
+}
+
+interface IGameStatistic {
+  currentDate: string;
+  newWordsCount: number;
+  successCount: number;
+  successStreak: number;
+}
+
+interface IStatisticRequest {
+  id: string;
+  token: string;
+  body?: IStatistic;
+}
+
 export type {
   IWord,
   IWordsQuery,
@@ -90,4 +114,7 @@ export type {
   IUserWordDifficulty,
   IAggregatedWordsRequest,
   IAggregatedWordsResponse,
+  IStatistic,
+  IStatisticRequest,
+  IGameStatistic,
 };

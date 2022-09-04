@@ -6,8 +6,8 @@ import Footer from 'widgets/Footer';
 import MiniDrawer from 'widgets/DrawerLayout/ui/Drawer';
 import AppBar from 'widgets/AppBar';
 import { DrawerHeader } from 'widgets/DrawerLayout/ui/Drawer/lib/styles';
-import { useDrawer } from './model';
-import { drawlerStyle } from './lib/styled';
+import { useDrawer } from '../model';
+import { drawlerStyle } from '../lib/styled';
 
 const DrawerLayout = () => {
   const { open, handleDrawerOpen, hasFooter, ...propsDrawer } = useDrawer();

@@ -26,7 +26,7 @@ const AppBar: FC<IAppBarProps> = (props) => {
         <Box sx={{ display: 'flex', flexGrow: 1, justifyContent: 'space-between' }}>
           <NavLink to="/" className="navLink logo">
             <IconButton color="secondary">
-              <Typography variant="h5" noWrap component="h1">
+              <Typography variant="h5" noWrap component="h1" sx={{ fontWeight: 'bold' }}>
                 RSLang
               </Typography>
               <Language sx={{ ml: 1 }} />

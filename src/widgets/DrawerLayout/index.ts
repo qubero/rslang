@@ -1,3 +1,3 @@
-import DrawerLayout from './DrawerLayout';
+import DrawerLayout from './ui/DrawerLayout';
 
 export { DrawerLayout };

@@ -1,4 +1,5 @@
 import { IUserWordDifficulty } from 'shared/api/lib/types';
+import { getDate } from 'shared/lib/utils';
 
 const MIN_CORRECT_COUNT = 3;
 const MIN_HARD_CORRECT_COUNT = 5;
@@ -9,6 +10,7 @@ const INITIAL_USER_WORD = {
   optional: {
     isLearned: false,
     learnProgress: 0,
+    createdAt: getDate(),
   },
 };
 
@@ -17,6 +19,7 @@ const HARD_USER_WORD = {
   optional: {
     isLearned: false,
     learnProgress: 0,
+    createdAt: getDate(),
   },
 };
 
@@ -25,6 +28,7 @@ const LEARNED_USER_WORD = {
   optional: {
     isLearned: true,
     learnProgress: MIN_CORRECT_COUNT,
+    createdAt: getDate(),
   },
 };
 
