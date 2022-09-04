@@ -1,0 +1,64 @@
+import { IUserWord } from 'shared/api/lib/types';
+import { getDate } from 'shared/lib/utils';
+
+const getFilteredWords = (item: IUserWord) => {
+  const currentDate = getDate();
+  return item.optional.isLearned && item.optional.createdAt === currentDate;
+};
+
+const getTotalPercent = (sprint: number, audiocall: number) => {
+  if (!sprint) return audiocall * 10;
+  if (!audiocall) return sprint * 10;
+  return ((sprint + audiocall) / 2) * 10;
+};
+
+const checkDate = (date: string) => date === getDate();
+
+const wordsData = (words: { [key: string]: number }, isAsc: boolean) => ({
+  labels: Object.keys(words),
+  datasets: [
+    {
+      fill: true,
+      label: 'Кол-во слов',
+      data: isAsc
+        ? Object.values(words).map((item, i, arr) => item + (i && arr[i - 1]))
+        : Object.values(words),
+      backgroundColor: '#0288d1',
+    },
+  ],
+});
+
+const options = (text: string) => ({
+  responsive: true,
+  plugins: {
+    legend: {
+      display: false,
+    },
+    title: {
+      display: true,
+      text,
+    },
+  },
+  scales: {
+    x: {
+      ticks: {
+        display: false,
+      },
+      grid: {
+        display: false,
+      },
+    },
+    y: {
+      beginAtZero: true,
+      ticks: {
+        display: true,
+        stepSize: 5,
+      },
+      grid: {
+        display: false,
+      },
+    },
+  },
+});
+
+export { getFilteredWords, getTotalPercent, checkDate, wordsData, options };
