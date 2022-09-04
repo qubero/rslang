@@ -1,13 +1,25 @@
-import useGameInit from '../model/hooks/useGameInit';
-import { GAMES, IGameTitle } from '../model/constants';
-import GameSetup from './GameSetup';
+import { GAMES } from '../model/constants';
 
-const GameInit = ({ game }: { game: IGameTitle }) => {
+type IGameInit = {
+  game: string | number;
+  settings: {
+    page: number;
+    group: number;
+  };
+  handleGroupChange: (g: number) => void;
+  handleStart: () => void;
+};
+
+const GameInit = (props: IGameInit) => {
+  const {
+    game,
+    settings: { group, page },
+    handleGroupChange,
+    handleStart,
+  } = props;
   const { title, description } = GAMES[game];
-  const { isStart, handleStart, settings, handleGroupChange } = useGameInit();
-  const { group, page } = settings;
 
-  return !isStart || isNaN(page) ? (
+  return (
     <div>
       <div>
         <p>{title}</p>
@@ -24,7 +36,7 @@ const GameInit = ({ game }: { game: IGameTitle }) => {
         </>
       ) : (
         <>
-          Выбранная группа: {settings.group}, страница: {settings.page}
+          Выбранная группа: {group}, страница: {page}
         </>
       )}
 
@@ -32,8 +44,6 @@ const GameInit = ({ game }: { game: IGameTitle }) => {
         НАЧАТЬ
       </button>
     </div>
-  ) : (
-    <GameSetup game={game} settings={settings} />
   );
 };
 
