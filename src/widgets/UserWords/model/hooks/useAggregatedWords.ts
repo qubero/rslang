@@ -6,7 +6,7 @@ import { MIN_WORDS_FOR_GAME_COUNT } from 'widgets/Games';
 import { IUseWordsParams } from 'widgets/UserWords/lib/types';
 
 const normalizeWords = (data: IAggregatedWordsResponse[]) => {
-  return data ? data[0].paginatedResults.map((w) => ({ ...w, id: w._id })) : [];
+  return data ? data[0].paginatedResults.map((w) => ({ ...w, id: w._id, answered: false })) : [];
 };
 
 const useAggregatedWords = (params: IUseWordsParams) => {

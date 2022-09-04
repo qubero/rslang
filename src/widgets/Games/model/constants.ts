@@ -1,4 +1,4 @@
-import { Audio, Sprint } from '../ui';
+import { Sprint, AudioCall } from 'widgets/Game';
 
 export const MIN_WORDS_FOR_GAME_COUNT = 20;
 export const PAGE_PER_GROUP_COUNT = 29; // starts from 0
@@ -14,7 +14,7 @@ export const GAMES = {
   [GAMES_TITLES[1]]: {
     title: 'Аудиовызов',
     description: 'Аудиовызов - тренировка на послушать...',
-    component: Audio,
+    component: AudioCall,
   },
 };
 

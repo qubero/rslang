@@ -3,9 +3,15 @@ import { IWord } from 'shared/api/lib/types';
 import { GAMES, IGameSettings, IGameTitle } from '../model/constants';
 import GameLoad from './GameLoad';
 
-type IGameSetupProps = { game: IGameTitle; settings: IGameSettings };
+type IGameSetupProps = {
+  game: IGameTitle;
+  settings: IGameSettings;
+  isMuted: boolean;
+  handleReset: () => void;
+};
 
-const GameSetup = ({ game, settings }: IGameSetupProps) => {
+const GameSetup = (props: IGameSetupProps) => {
+  const { game, settings, isMuted, handleReset } = props;
   const { component: Game } = GAMES[game];
 
   const [isWordsReady, setIsWordsReady] = useState(false);
@@ -24,7 +30,7 @@ const GameSetup = ({ game, settings }: IGameSetupProps) => {
       words={wordsRef}
     />
   ) : (
-    <Game words={wordsRef.current} />
+    <Game words={wordsRef.current} isMuted={isMuted} handleReset={handleReset} />
   );
 };
 

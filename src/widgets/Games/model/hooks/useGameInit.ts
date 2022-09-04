@@ -10,6 +10,7 @@ const useGameInit = () => {
   const [isStart, setIsStart] = useState(false);
 
   const handleStart = () => setIsStart(true);
+  const handleReset = () => setIsStart(false);
 
   const handleGroupChange = (newGroup: number) => {
     const newPage = getRandomIntInclusive(0, PAGE_PER_GROUP_COUNT);
@@ -30,6 +31,7 @@ const useGameInit = () => {
     settings,
     isStart,
     handleStart,
+    handleReset,
     handleGroupChange,
   };
 };

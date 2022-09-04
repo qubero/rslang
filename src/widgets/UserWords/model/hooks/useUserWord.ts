@@ -6,6 +6,7 @@ import {
   useUpdateUserWordMutation,
 } from 'shared/api';
 import { IUserWord } from 'shared/api/lib/types';
+import { getDate } from 'shared/lib/utils';
 import useAuth from 'widgets/Authorization/model/hooks/useAuth';
 import {
   HARD_USER_WORD,
@@ -41,7 +42,11 @@ const useUserWord = (wordId: string) => {
 
     if (!wordRef.current && body) {
       try {
-        wordRef.current = await createUserWord({ auth, wordId, body }).unwrap();
+        body.optional.createdAt = getDate();
+
+        if (body.optional.createdAt) {
+          wordRef.current = await createUserWord({ auth, wordId, body }).unwrap();
+        }
       } catch {
         return;
       }
@@ -76,8 +81,20 @@ const useUserWord = (wordId: string) => {
   };
 
   const handleSuccess = async () => {
-    if (!wordRef.current) await markAsNew();
-    if (!wordRef.current || wordRef.current.optional.isLearned) return;
+    if (!wordRef.current) {
+      const body = {
+        ...INITIAL_USER_WORD,
+        optional: {
+          ...INITIAL_USER_WORD.optional,
+          learnProgress: STEP,
+        },
+      };
+      await updateWord(body);
+
+      return;
+    }
+
+    if (wordRef.current.optional.isLearned) return;
 
     const { difficulty, optional } = { ...wordRef.current };
     const learnProgress = optional.learnProgress + STEP;
@@ -95,12 +112,32 @@ const useUserWord = (wordId: string) => {
     }
   };
 
+  const handleFail = async () => {
+    if (!wordRef.current) {
+      await updateWord(INITIAL_USER_WORD);
+    } else {
+      const { difficulty, optional } = { ...wordRef.current };
+      const learnProgress = optional.learnProgress >= STEP ? optional.learnProgress - STEP : 0;
+
+      const body = {
+        difficulty,
+        optional: {
+          ...optional,
+          learnProgress,
+          isLearned: false,
+        },
+      };
+      await updateWord(body);
+    }
+  };
+
   return {
     markAsNew,
     markAsDifficult,
     markAsLearned,
     handleDelete,
     handleSuccess,
+    handleFail,
   };
 };
 
