@@ -17,6 +17,7 @@ interface IWord {
     difficulty: 'hard' | 'easy';
     optional: { isLearned: boolean; learnProgress: number };
   };
+  answered?: boolean;
 }
 
 interface IWordsQuery {
@@ -53,7 +54,6 @@ interface IUserWord {
     isLearned: boolean;
     learnProgress: number;
     createdAt: string | null;
-    updatedAt: string | null;
   };
 }
 
