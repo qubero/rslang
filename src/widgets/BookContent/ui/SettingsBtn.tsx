@@ -43,7 +43,13 @@ const SettingsBtn = ({ item }: ISettingsBtn) => {
         open={open}
         icon={
           <SpeedDialIcon
-            sx={{ position: 'absolute', bottom: 19 }}
+            sx={{
+              position: 'absolute',
+              top: '50%',
+              transform: 'translateY(-50%)',
+              display: 'flex',
+              height: 'auto',
+            }}
             icon={<DownIcon fontSize="large" />}
             openIcon={<UpIcon fontSize="large" />}
           />
