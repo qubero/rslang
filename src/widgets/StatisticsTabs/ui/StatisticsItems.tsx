@@ -80,14 +80,15 @@ const StatisticsItems = () => {
                   Спринт <ElectricBolt color="info" fontSize="large" />
                 </Typography>
                 <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>
-                  Новых слов: {checkDate(sprint.currentDate) && sprint.newWordsCount}
+                  Новых слов: {(checkDate(sprint.currentDate) && sprint.newWordsCount) || 0}
                 </Typography>
                 <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>
-                  Правильных ответов: {checkDate(sprint.currentDate) && sprint.successCount * 10}%
+                  Правильных ответов:{' '}
+                  {(checkDate(sprint.currentDate) && sprint.successCount * 10) || 0}%
                 </Typography>
                 <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>
                   Самая длинная серия правильных ответов:{' '}
-                  {checkDate(sprint.currentDate) && sprint.successStreak}
+                  {(checkDate(sprint.currentDate) && sprint.successStreak) || 0}
                 </Typography>
               </Box>
             </Item>
@@ -106,15 +107,15 @@ const StatisticsItems = () => {
                   Аудиовызов <Audiotrack color="warning" fontSize="large" />
                 </Typography>
                 <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>
-                  Новых слов: {checkDate(audiocall.currentDate) && audiocall.newWordsCount}
+                  Новых слов: {(checkDate(audiocall.currentDate) && audiocall.newWordsCount) || 0}
                 </Typography>
                 <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>
                   Правильных ответов:{' '}
-                  {checkDate(audiocall.currentDate) && audiocall.successCount * 10}%
+                  {(checkDate(audiocall.currentDate) && audiocall.successCount * 10) || 0}%
                 </Typography>
                 <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>
                   Самая длинная серия правильных ответов:{' '}
-                  {checkDate(audiocall.currentDate) && audiocall.successStreak}
+                  {(checkDate(audiocall.currentDate) && audiocall.successStreak) || 0}
                 </Typography>
               </Box>
             </Item>

@@ -24,6 +24,7 @@ const wordsData = (words: { [key: string]: number }, isAsc: boolean) => ({
         ? Object.values(words).map((item, i, arr) => item + (i && arr[i - 1]))
         : Object.values(words),
       backgroundColor: '#0288d1',
+      minBarLength: 7,
     },
   ],
 });
@@ -37,6 +38,9 @@ const options = (text: string) => ({
     title: {
       display: true,
       text,
+      font: {
+        size: 14,
+      },
     },
   },
   scales: {

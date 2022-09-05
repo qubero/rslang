@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { getDate } from 'shared/lib/utils';
 import { IFinalStat, IGameProps } from 'widgets/Game/lib/types';
+import { useUserStatistics } from 'widgets/StatisticsTabs/model/hooks';
 import { useUserWord } from 'widgets/UserWords';
 
 import { INITIAL_STAT } from '../constants';
@@ -9,6 +10,7 @@ import useAudio from './useAudio';
 
 const useGame = (title: string, props: IGameProps) => {
   const { words, isMuted, wordsForStepCount } = props;
+  const { updateGameStats, isLoadStatistics } = useUserStatistics();
   const [isAnswered, setIsAnswered] = useState(false);
   const [isFinished, setIsFinished] = useState(false);
 
@@ -33,8 +35,7 @@ const useGame = (title: string, props: IGameProps) => {
           currentDate: getDate(),
         };
 
-        // метод сохранения статистики
-        console.log('finish', title, stat);
+        updateGameStats(title as 'sprint' | 'audiocall', stat);
 
         setFinalStat({
           ...stat,
@@ -47,6 +48,7 @@ const useGame = (title: string, props: IGameProps) => {
       setFinalStat(null);
       setCurrentWordIndex(0);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [title, isFinished, setCurrentWordIndex, words, finalStat, setFinalStat]);
 
   useEffect(() => {
