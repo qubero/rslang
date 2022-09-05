@@ -1,5 +1,5 @@
 import { Badge, Box, Button, Grow, Typography } from '@mui/material';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { API_URL } from 'shared/api/model/constants';
 import { IGameProps } from '../lib/types';
 import useGame from '../model/hooks/useGame';
@@ -19,10 +19,15 @@ const AudioCall = (props: IGameProps) => {
     handleNextStep,
   } = useGame('audiocall', { ...props, wordsForStepCount: 5 });
 
+  const pressedRef = useRef(false);
+
   useEffect(() => {
     const KEYS = ['Digit1', 'Digit2', 'Digit3', 'Digit4', 'Digit5'];
 
     const handleKeyPress = async (e: KeyboardEvent) => {
+      if (pressedRef.current) return;
+      pressedRef.current = true;
+
       const index = KEYS.indexOf(e.code);
 
       if (index > -1 && !isAnswered) {
@@ -36,6 +41,8 @@ const AudioCall = (props: IGameProps) => {
       if (e.code === 'KeyQ' && isAnswered) {
         handleNextStep();
       }
+
+      setTimeout(() => (pressedRef.current = false));
     };
 
     window.addEventListener('keypress', handleKeyPress);
