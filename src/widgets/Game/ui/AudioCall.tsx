@@ -1,3 +1,4 @@
+import { Badge, Box, Button, Grow, Typography } from '@mui/material';
 import { useEffect } from 'react';
 import { API_URL } from 'shared/api/model/constants';
 import { IGameProps } from '../lib/types';
@@ -32,7 +33,7 @@ const AudioCall = (props: IGameProps) => {
         await handleAnswer('');
       }
 
-      if (e.code === 'KeyR' && isAnswered) {
+      if (e.code === 'KeyQ' && isAnswered) {
         handleNextStep();
       }
     };
@@ -44,41 +45,107 @@ const AudioCall = (props: IGameProps) => {
   const getStyle = (id: string) => {
     if (!isAnswered) return {};
 
-    if (words[currentWordIndex].id === id) return { background: 'green' };
+    if (words[currentWordIndex].id === id) return { background: '#2e7d32' };
 
     if (currentStat.currentAnsweredId === id && words[currentWordIndex].id !== id)
-      return { background: 'red' };
+      return { background: '#d32f2f' };
   };
 
   return isFinished ? (
     stat && <GameStat isMuted={isMuted} stat={stat} handleReset={handleReset} />
   ) : (
-    <>
-      В игре аудиовызов,
-      <div>
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        gap: '20px',
+      }}
+    >
+      <div
+        style={{
+          height: 200,
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'flex-end',
+          alignItems: 'center',
+          transform: 'translateY(-20px)',
+        }}
+      >
         {isAnswered && (
-          <img src={API_URL + words[currentWordIndex].image} alt={words[currentWordIndex].word} />
+          <Grow in={isAnswered} timeout={1000}>
+            <div>
+              <img
+                src={API_URL + words[currentWordIndex].image}
+                alt={words[currentWordIndex].word}
+                style={{ borderRadius: '5px', height: 150 }}
+              />
+              <Typography variant="h5" sx={{ fontWeight: 'bold', textAlign: 'center' }}>
+                {words[currentWordIndex].word}
+              </Typography>
+            </div>
+          </Grow>
         )}
-        {words[currentWordIndex].word}
         <SoundBtn word={words[currentWordIndex]} isMuted={isMuted} />
       </div>
-      {wordsForStep.map((w, idx) => (
-        <button
-          key={w.id}
-          onClick={async () => !isAnswered && (await handleAnswer(w.id))}
-          style={getStyle(w.id)}
-        >
-          {idx + 1} {w.word}
-        </button>
-      ))}
+      <Box
+        sx={{
+          width: '100%',
+          display: 'flex',
+          gap: '20px',
+          flexWrap: 'wrap',
+          justifyContent: 'center',
+        }}
+      >
+        {wordsForStep.map((w, idx) => (
+          <Badge
+            key={w.id}
+            anchorOrigin={{
+              vertical: 'top',
+              horizontal: 'left',
+            }}
+            color="info"
+            badgeContent={idx + 1}
+          >
+            <Button
+              onClick={async () => !isAnswered && (await handleAnswer(w.id))}
+              style={getStyle(w.id)}
+            >
+              {w.word}
+            </Button>
+          </Badge>
+        ))}
+      </Box>
       <div>
         {isAnswered ? (
-          <button onClick={handleNextStep}>R Дальше</button>
+          <Badge
+            anchorOrigin={{
+              vertical: 'top',
+              horizontal: 'left',
+            }}
+            color="info"
+            badgeContent={'Q'}
+          >
+            <Button variant="contained" onClick={handleNextStep}>
+              Дальше
+            </Button>
+          </Badge>
         ) : (
-          <button onClick={() => handleAnswer('')}>Q Не знаю</button>
+          <Badge
+            anchorOrigin={{
+              vertical: 'top',
+              horizontal: 'left',
+            }}
+            color="info"
+            badgeContent={'Q'}
+          >
+            <Button variant="contained" onClick={() => handleAnswer('')}>
+              Не знаю
+            </Button>
+          </Badge>
         )}
       </div>
-    </>
+    </Box>
   );
 };
 

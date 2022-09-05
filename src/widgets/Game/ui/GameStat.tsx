@@ -36,7 +36,8 @@ const GameStat = (props: IGameStatProps) => {
       <Box
         sx={{
           typography: 'body1',
-          minWidth: 270,
+          width: 300,
+          maxWidth: '100%',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'stretch',
