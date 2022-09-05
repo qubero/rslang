@@ -67,15 +67,6 @@ const Sprint = (props: IGameProps) => {
     return () => window.removeEventListener('keypress', handleKeyPress);
   }, [handleAnswer, handleNextStep, wordsForStep, isAnswered, handleChoice]);
 
-  const getStyle = (id: string) => {
-    if (!isAnswered) return {};
-
-    if (words[currentWordIndex].id === id) return { background: 'green' };
-
-    if (currentStat.currentAnsweredId === id && words[currentWordIndex].id !== id)
-      return { background: 'red' };
-  };
-
   return isFinished ? (
     stat && <GameStat isMuted={isMuted} stat={stat} handleReset={handleReset} />
   ) : (
@@ -86,6 +77,8 @@ const Sprint = (props: IGameProps) => {
         alignItems: 'center',
         gap: '20px',
         padding: '20px',
+        width: '500px',
+        maxWidth: '100%',
       }}
       ref={boxRef}
     >

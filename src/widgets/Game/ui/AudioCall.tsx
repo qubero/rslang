@@ -108,6 +108,7 @@ const AudioCall = (props: IGameProps) => {
             badgeContent={idx + 1}
           >
             <Button
+              variant="outlined"
               onClick={async () => !isAnswered && (await handleAnswer(w.id))}
               style={getStyle(w.id)}
             >
