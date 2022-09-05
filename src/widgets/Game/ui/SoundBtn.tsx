@@ -1,6 +1,7 @@
 import { memo, useEffect, useMemo, useRef } from 'react';
 import { Howl } from 'howler';
 import { Fab } from '@mui/material';
+import { VolumeUp } from '@mui/icons-material';
 import { API_URL } from 'shared/api/model/constants';
 import { IWord } from 'shared/api/lib/types';
 
@@ -35,18 +36,16 @@ const SoundBtn = ({ word, isMuted, isAuto = true }: ISoundBtnProps) => {
   return (
     <Fab
       sx={{
-        color: `red`,
-        p: '5px',
-        width: '45px',
-        height: '45px',
-        backgroundColor: 'white',
+        width: '36px',
+        height: '36px',
+        margin: '10px',
       }}
       onClick={() => {
         audio.stop();
         audio.play();
       }}
     >
-      repeat
+      <VolumeUp />
     </Fab>
   );
 };

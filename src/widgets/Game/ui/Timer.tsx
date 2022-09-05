@@ -11,7 +11,11 @@ const Timer = ({ handleFinish }: { handleFinish: () => void }) => {
     }
   }, [seconds, handleFinish]);
 
-  return <div>{seconds}</div>;
+  return (
+    <div>
+      <b>{seconds}</b>
+    </div>
+  );
 };
 
 export default Timer;

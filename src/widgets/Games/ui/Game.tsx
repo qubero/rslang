@@ -1,3 +1,5 @@
+import { Box } from '@mui/material';
+import { WrapperBackground } from 'shared/ui/Wrapper';
 import useGameControls from '../model/hooks/useGameControls';
 import useGameInit from '../model/hooks/useGameInit';
 import { IGameTitle } from '../model/constants';
@@ -6,12 +8,23 @@ import GameControls from './GameControls';
 import GameInit from './GameInit';
 
 const Game = ({ game }: { game: IGameTitle }) => {
-  const { fullscreenRef, isMuted, toggleSound, toggleFullscreen } = useGameControls();
+  const { fullscreenRef, isFull, isMuted, toggleSound, toggleFullscreen } = useGameControls();
   const { settings, isStart, handleStart, handleReset, handleGroupChange } = useGameInit();
 
   return (
-    <div ref={fullscreenRef} style={{ background: 'white' }}>
+    <Box
+      ref={fullscreenRef}
+      sx={{
+        width: '100%',
+        height: '100%',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
+      <WrapperBackground />
       <GameControls
+        isFull={isFull}
         isMuted={isMuted}
         toggleSound={toggleSound}
         toggleFullscreen={toggleFullscreen}
@@ -26,7 +39,7 @@ const Game = ({ game }: { game: IGameTitle }) => {
       ) : (
         <GameSetup game={game} settings={settings} isMuted={isMuted} handleReset={handleReset} />
       )}
-    </div>
+    </Box>
   );
 };
 

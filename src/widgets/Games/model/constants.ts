@@ -8,12 +8,14 @@ export const GAMES_TITLES = ['SPRINT', 'AUDIO'];
 export const GAMES = {
   [GAMES_TITLES[0]]: {
     title: 'Спринт',
-    description: 'Спринт - тренировка на скорость...',
+    description:
+      'Спринт - скоростная тренировка. В течение 30 секунд нужно угадывать, верный перевод предложен к английскому слову или нет.',
     component: Sprint,
   },
   [GAMES_TITLES[1]]: {
     title: 'Аудиовызов',
-    description: 'Аудиовызов - тренировка на послушать...',
+    description:
+      'Аудиовызов - тренировка слуха. Прослушиваете английское слово и выбираете один из пяти вариантов ответа.',
     component: AudioCall,
   },
 };

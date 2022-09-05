@@ -1,10 +1,15 @@
+import { AccessTime, RadioButtonChecked, RadioButtonUnchecked } from '@mui/icons-material';
+import { Badge, Box, Button, Rating, Typography } from '@mui/material';
 import { useCallback, useEffect, useRef } from 'react';
 import { IGameProps } from '../lib/types';
 import useGame from '../model/hooks/useGame';
 import GameStat from './GameStat';
 import Timer from './Timer';
 
-const BTNS = ['верно', 'неверно'];
+const BTNS = [
+  ['верно', '#2e7d32'],
+  ['неверно', '#d32f2f'],
+];
 const m = [10, 10, 20, 30, 50, 80];
 
 const Sprint = (props: IGameProps) => {
@@ -22,6 +27,7 @@ const Sprint = (props: IGameProps) => {
   } = useGame('sprint', { ...props, wordsForStepCount: 2 });
 
   const pointsRef = useRef(0);
+  const boxRef = useRef<HTMLDivElement>(null);
 
   const handleChoice = useCallback(
     async (id: string) => {
@@ -30,7 +36,17 @@ const Sprint = (props: IGameProps) => {
         if (res) {
           pointsRef.current += m[Math.min(Math.ceil(currentStat.currentStreak / 4), m.length)];
         }
-        setTimeout(handleNextStep, 300);
+
+        if (boxRef.current) {
+          boxRef.current.style.boxShadow = res
+            ? '0 3px 10px rgb(0 255 0 / 0.2)'
+            : '0 3px 10px rgb(255 0 0 / 0.2)';
+        }
+
+        setTimeout(() => {
+          if (boxRef.current) boxRef.current.style.boxShadow = 'none';
+          handleNextStep();
+        }, 300);
       }
     },
     [currentStat.currentStreak, handleAnswer, handleNextStep, isAnswered]
@@ -51,32 +67,106 @@ const Sprint = (props: IGameProps) => {
     return () => window.removeEventListener('keypress', handleKeyPress);
   }, [handleAnswer, handleNextStep, wordsForStep, isAnswered, handleChoice]);
 
-  const getStyle = (id: string) => {
-    if (!isAnswered) return {};
-
-    if (words[currentWordIndex].id === id) return { background: 'green' };
-
-    if (currentStat.currentAnsweredId === id && words[currentWordIndex].id !== id)
-      return { background: 'red' };
-  };
-
   return isFinished ? (
     stat && <GameStat isMuted={isMuted} stat={stat} handleReset={handleReset} />
   ) : (
-    <>
-      В игре спринт,
-      <Timer handleFinish={handleFinish} />
-      <div>Всего очков: {pointsRef.current}</div>
-      <div>За верный ответ: {m[Math.min(Math.ceil(currentStat.currentStreak / 4), m.length)]}</div>
-      <div>
-        {words[currentWordIndex].word} - это {wordsForStep[0].wordTranslate}
-      </div>
-      {wordsForStep.map((w, idx) => (
-        <button key={w.id} onClick={() => handleChoice(w.id)} style={getStyle(w.id)}>
-          {idx + 1} {w.word} {BTNS[idx]}
-        </button>
-      ))}
-    </>
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        gap: '20px',
+        padding: '20px',
+        width: '500px',
+        maxWidth: '100%',
+        borderRadius: '15px',
+      }}
+      ref={boxRef}
+    >
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '50px',
+        }}
+      >
+        <Typography variant="h4" sx={{ fontWeight: 'bold' }}>
+          Oчки: {pointsRef.current}
+        </Typography>
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '10px',
+          }}
+        >
+          <AccessTime />
+          <Timer handleFinish={handleFinish} />
+        </Box>
+      </Box>
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: '20px',
+        }}
+      >
+        <Typography variant="h5" sx={{ fontWeight: 'bold' }}>
+          + {m[Math.min(Math.ceil(currentStat.currentStreak / 4), m.length)]} очков за слово
+        </Typography>
+        <Rating
+          value={currentStat.currentStreak}
+          icon={<RadioButtonChecked fontSize="inherit" />}
+          emptyIcon={<RadioButtonUnchecked fontSize="inherit" />}
+          readOnly
+          max={4}
+        />
+      </Box>
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '10px',
+          margin: '50px 0',
+        }}
+      >
+        <Typography variant="h4" sx={{ fontWeight: 'bold' }}>
+          {words[currentWordIndex].word}
+        </Typography>
+        это
+        <Typography variant="h4" sx={{ fontWeight: 'bold' }}>
+          {wordsForStep[0].wordTranslate}
+        </Typography>
+      </Box>
+      <Box
+        sx={{
+          display: 'flex',
+          gap: '20px',
+        }}
+      >
+        {wordsForStep.map((w, idx) => (
+          <Badge
+            key={w.id}
+            anchorOrigin={{
+              vertical: 'top',
+              horizontal: 'left',
+            }}
+            color="info"
+            badgeContent={idx + 1}
+          >
+            <Button
+              onClick={() => handleChoice(w.id)}
+              sx={{
+                background: BTNS[idx][1],
+              }}
+            >
+              {BTNS[idx][0]}
+            </Button>
+          </Badge>
+        ))}
+      </Box>
+    </Box>
   );
 };
 

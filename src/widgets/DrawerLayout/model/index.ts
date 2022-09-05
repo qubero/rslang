@@ -16,7 +16,7 @@ const useDrawer = () => {
   }, []);
 
   const hasFooter = useCallback(
-    () => () => pathname !== `/${SPRINT}` && pathname !== `/${AUDIOCALL}`,
+    () => pathname !== `/${SPRINT}` && pathname !== `/${AUDIOCALL}`,
     [AUDIOCALL, SPRINT, pathname]
   );
 
