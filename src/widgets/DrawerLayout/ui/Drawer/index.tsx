@@ -44,7 +44,7 @@ const MiniDrawer: FC<IMiniDrawerProps> = (props) => {
           {toggle ? <ExpandLess /> : <ExpandMore />}
         </ListItem>
         <Collapse in={toggle} timeout="auto" unmountOnExit>
-          <Box sx={{ pl: 2 }}>
+          <Box>
             <ListItem text="Спринт" open={toggle} link={SPRINT}>
               <ElectricBolt color="primary" />
             </ListItem>

@@ -41,7 +41,7 @@ const useUserStatistics = () => {
       newOptional[game] = {
         currentDate,
         newWordsCount: newWordsCount + words,
-        successCount: successCount ? (successCount + count) / 2 : count,
+        successCount: successCount ? +(successCount + count).toFixed(1) / 2 : count,
         successStreak: Math.max(successStreak, streak),
       };
     }

@@ -84,7 +84,7 @@ const StatisticsItems = () => {
                 </Typography>
                 <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>
                   Правильных ответов:{' '}
-                  {(checkDate(sprint.currentDate) && sprint.successCount * 10) || 0}%
+                  {(checkDate(sprint.currentDate) && (sprint.successCount * 10).toFixed(0)) || 0}%
                 </Typography>
                 <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>
                   Самая длинная серия правильных ответов:{' '}
@@ -111,7 +111,9 @@ const StatisticsItems = () => {
                 </Typography>
                 <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>
                   Правильных ответов:{' '}
-                  {(checkDate(audiocall.currentDate) && audiocall.successCount * 10) || 0}%
+                  {(checkDate(audiocall.currentDate) && (audiocall.successCount * 10).toFixed(0)) ||
+                    0}
+                  %
                 </Typography>
                 <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>
                   Самая длинная серия правильных ответов:{' '}

@@ -7,9 +7,9 @@ const getFilteredWords = (item: IUserWord) => {
 };
 
 const getTotalPercent = (sprint: number, audiocall: number) => {
-  if (!sprint) return audiocall * 10;
-  if (!audiocall) return sprint * 10;
-  return ((sprint + audiocall) / 2) * 10;
+  if (!sprint) return (audiocall * 10).toFixed(0);
+  if (!audiocall) return (sprint * 10).toFixed(0);
+  return (((sprint + audiocall) / 2) * 10).toFixed(0);
 };
 
 const checkDate = (date: string) => date === getDate();
