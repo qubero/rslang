@@ -11,6 +11,7 @@ import { drawlerStyle } from '../lib/styled';
 
 const DrawerLayout = () => {
   const { open, handleDrawerOpen, hasFooter, ...propsDrawer } = useDrawer();
+
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
@@ -18,7 +19,7 @@ const DrawerLayout = () => {
       <MiniDrawer open={open} {...propsDrawer} />
       <Box component="main" sx={drawlerStyle}>
         <DrawerHeader />
-        <Container maxWidth="xl" sx={{ marginY: 3 }}>
+        <Container maxWidth="xl" sx={{ marginY: 3 }} style={{ height: '100%' }}>
           <Outlet />
         </Container>
         {hasFooter() && <Footer />}

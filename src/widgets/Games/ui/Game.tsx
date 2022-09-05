@@ -1,3 +1,4 @@
+import { Box } from '@mui/material';
 import useGameControls from '../model/hooks/useGameControls';
 import useGameInit from '../model/hooks/useGameInit';
 import { IGameTitle } from '../model/constants';
@@ -10,7 +11,17 @@ const Game = ({ game }: { game: IGameTitle }) => {
   const { settings, isStart, handleStart, handleReset, handleGroupChange } = useGameInit();
 
   return (
-    <div ref={fullscreenRef} style={{ background: 'white' }}>
+    <Box
+      ref={fullscreenRef}
+      sx={{
+        width: '100%',
+        height: '100%',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        background: 'white',
+      }}
+    >
       <GameControls
         isFull={isFull}
         isMuted={isMuted}
@@ -27,7 +38,7 @@ const Game = ({ game }: { game: IGameTitle }) => {
       ) : (
         <GameSetup game={game} settings={settings} isMuted={isMuted} handleReset={handleReset} />
       )}
-    </div>
+    </Box>
   );
 };
 
