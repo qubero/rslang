@@ -40,17 +40,15 @@ const OurAbility = () => {
               variants={fadeAnimation}
               custom={i + 1}
             >
-              <CardActionArea>
-                <CardMedia component="img" height="250" image={card.src} alt={card.alt} />
-                <CardContent>
-                  <Typography variant="h5" gutterBottom component="div" sx={{ fontWeight: 'bold' }}>
-                    {card.title}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    {card.description}
-                  </Typography>
-                </CardContent>
-              </CardActionArea>
+              <CardMedia component="img" height="250" image={card.src} alt={card.alt} />
+              <CardContent>
+                <Typography variant="h5" gutterBottom component="div" sx={{ fontWeight: 'bold' }}>
+                  {card.title}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  {card.description}
+                </Typography>
+              </CardContent>
             </Card>
           </Grid>
         ))}
