@@ -30,7 +30,7 @@ const useGame = (title: string, props: IGameProps) => {
     if (isFinished) {
       if (!finalStat) {
         const stat = {
-          successCount: statRef.current.successCount / 2,
+          successCount: +(statRef.current.successCount / 2).toFixed(1),
           successStreak: statRef.current.successStreak,
           newWordsCount: words.filter((w) => !w.userWord).length,
           currentDate: getDate(),

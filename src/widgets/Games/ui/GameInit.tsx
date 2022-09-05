@@ -60,7 +60,7 @@ const GameInit = (props: IGameInit) => {
           </div>
         ) : (
           <div>
-            Выбранная группа: {GROUPS[group]}, страница: {page + 1}
+            Выбранная группа: {+GROUPS[group]}, страница: {+page + 1}
           </div>
         )}
         {!(isNaN(page) || isNaN(group)) && (
