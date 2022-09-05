@@ -27,14 +27,6 @@ const WordsPanel = ({ setLearning }: IWordsPanel) => {
       ({ userWord }) => userWord?.optional.isLearned || userWord?.difficulty === 'hard'
     ).length === MIN_WORDS_FOR_GAME_COUNT;
 
-  /*  const { updateStatistics } = useUpdateStatistics();
-  useEffect(() => {
-    return () => {
-      updateStatistics();
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); */
-
   useEffect(() => {
     if (learn) setLearning(learn);
     else setLearning(learn);
