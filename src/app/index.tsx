@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from '@emotion/react';
 
-import Wrapper from 'shared/ui/Wrapper';
+import { Wrapper } from 'shared/ui/Wrapper';
 import MainPage from 'pages/MainPage';
 import BookPage from 'pages/BookPage';
 import StatisticsPage from 'pages/StatisticsPage';

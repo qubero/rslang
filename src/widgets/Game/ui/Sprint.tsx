@@ -79,6 +79,7 @@ const Sprint = (props: IGameProps) => {
         padding: '20px',
         width: '500px',
         maxWidth: '100%',
+        borderRadius: '15px',
       }}
       ref={boxRef}
     >

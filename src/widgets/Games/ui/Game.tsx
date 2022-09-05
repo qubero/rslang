@@ -1,4 +1,5 @@
 import { Box } from '@mui/material';
+import { WrapperBackground } from 'shared/ui/Wrapper';
 import useGameControls from '../model/hooks/useGameControls';
 import useGameInit from '../model/hooks/useGameInit';
 import { IGameTitle } from '../model/constants';
@@ -19,9 +20,9 @@ const Game = ({ game }: { game: IGameTitle }) => {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        background: 'white',
       }}
     >
+      <WrapperBackground />
       <GameControls
         isFull={isFull}
         isMuted={isMuted}
