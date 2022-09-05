@@ -10,7 +10,6 @@ import useAudio from './useAudio';
 
 const useGame = (title: string, props: IGameProps) => {
   const { words, isMuted, wordsForStepCount } = props;
-  const { updateGameStats, isLoadStatistics } = useUserStatistics();
   const [isAnswered, setIsAnswered] = useState(false);
   const [isFinished, setIsFinished] = useState(false);
 

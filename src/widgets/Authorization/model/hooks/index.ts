@@ -25,10 +25,10 @@ const useAuthFormik = (
         if (!isLogin) await createUser({ name, email, password }).unwrap();
         const user = await getUser({ email, password }).unwrap();
         const initial = { id: user.userId, token: user.token, body: INITIAL_STATISTICS };
-        if (!isLogin) initialStatistics(initial);
+        if (!isLogin) await initialStatistics(initial).unwrap();
         setUserAuth(user);
         handlerClose();
-        setTimeout(() => window.location.reload(), 100);
+        setTimeout(() => window.location.reload(), 200);
       } catch (error) {
         setErrors({ password: isLogin ? 'Неверный email или пароль' : 'Этот email уже занят' });
       } finally {
