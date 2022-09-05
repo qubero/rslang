@@ -1,7 +1,7 @@
 import { FC, memo, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Toolbar, Typography, IconButton, Box } from '@mui/material';
-import { Language, Menu } from '@mui/icons-material';
+import { School, Menu } from '@mui/icons-material';
 
 import Authorization from 'widgets/Authorization';
 import ModalInfo from 'shared/ui/Modal';
@@ -29,7 +29,7 @@ const AppBar: FC<IAppBarProps> = (props) => {
               <Typography variant="h5" noWrap component="h1" sx={{ fontWeight: 'bold' }}>
                 RSLang
               </Typography>
-              <Language sx={{ ml: 1 }} />
+              <School sx={{ ml: 1 }} />
             </IconButton>
           </NavLink>
           <UserPanel userAuth={userAuth} setUserAuth={setUserAuth} setModal={setModalToggle} />

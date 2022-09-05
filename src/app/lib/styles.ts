@@ -4,10 +4,10 @@ const theme = responsiveFontSizes(
   createTheme({
     palette: {
       primary: {
-        main: '#000000',
+        main: '#080305',
       },
       secondary: {
-        main: '#FDF500',
+        main: '#fffdfd',
       },
     },
     breakpoints: {
