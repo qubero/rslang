@@ -3,7 +3,10 @@ import { Image } from 'mui-image';
 import { Box, Button, Stack, Typography } from '@mui/material';
 import { motion } from 'framer-motion';
 
+import { NavLink } from 'react-router-dom';
 import { fadeAnimation } from 'shared/lib/styles';
+import { ROUTE_PATH } from 'shared/constants';
+import learnEnglish from './assets/learn_english.png';
 
 const Intro = () => {
   return (
@@ -29,24 +32,20 @@ const Intro = () => {
         <Typography variant="body1" component={motion.div} variants={fadeAnimation} custom={2}>
           Бесплатный, веселый и эффективный способ выучить язык, скорее же присоединяйтесь к нам.
         </Typography>
-        <Button
-          variant="contained"
-          sx={{ color: '#FDF500' }}
-          component={motion.button}
-          variants={fadeAnimation}
-          custom={3}
-        >
-          Начать
-        </Button>
+        <NavLink to={`/${ROUTE_PATH.BOOK}`} className="navLink">
+          <Button
+            variant="contained"
+            sx={{ color: '#fffdff' }}
+            component={motion.button}
+            variants={fadeAnimation}
+            custom={3}
+          >
+            Начать
+          </Button>
+        </NavLink>
       </Stack>
       <Box component={motion.div} variants={fadeAnimation} custom={1}>
-        <Image
-          src={`https://via.placeholder.com/500`}
-          alt="img"
-          duration={0}
-          height="100%"
-          width="100%"
-        />
+        <Image src={learnEnglish} alt="img" duration={0} height="100%" width="100%" />
       </Box>
     </Stack>
   );

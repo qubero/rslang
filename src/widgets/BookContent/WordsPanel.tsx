@@ -14,7 +14,6 @@ import WordsPagination from './ui/WordsPagination';
 type IWordsPanel = { setLearning: Dispatch<SetStateAction<boolean>> };
 
 const WordsPanel = ({ setLearning }: IWordsPanel) => {
-  //TD: тоглить стейт в юсе эффекте???
   const { isAuth } = useAuth();
   const { group, page } = useQueryParams();
   const params = { page: Number(page), group: Number(group) };
@@ -23,15 +22,10 @@ const WordsPanel = ({ setLearning }: IWordsPanel) => {
 
   const { data, isLoading } = useGetWordsQuery(params, { skip: isAuth });
   const { data: userData, isReady } = useAggregatedWords(filterParams);
-  const learn = userData.filter((item) => item.userWord).length === MIN_WORDS_FOR_GAME_COUNT;
-
-  /*  const { updateStatistics } = useUpdateStatistics();
-  useEffect(() => {
-    return () => {
-      updateStatistics();
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); */
+  const learn =
+    userData.filter(
+      ({ userWord }) => userWord?.optional.isLearned || userWord?.difficulty === 'hard'
+    ).length === MIN_WORDS_FOR_GAME_COUNT;
 
   useEffect(() => {
     if (learn) setLearning(learn);

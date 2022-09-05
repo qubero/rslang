@@ -34,7 +34,11 @@ const GroupHeader = ({ isLearning }: IGroupHeader) => {
         </Typography>
       </Stack>
       <Stack direction="row" sx={{ mr: 1 }}>
-        <NavLink to={`/${ROUTE_PATH.SPRINT}`} className="navLink" state={{ group, page }}>
+        <NavLink
+          to={`/${ROUTE_PATH.SPRINT}`}
+          className={`navLink${isLearning || group === '6' ? ' disabled-link' : ''}`}
+          state={{ group, page }}
+        >
           <Button
             color={groupData[Number(group)].color}
             variant="contained"
@@ -42,7 +46,7 @@ const GroupHeader = ({ isLearning }: IGroupHeader) => {
             variants={fadeAnimation}
             custom={3}
             sx={{ height: '50px', mr: 2 }}
-            disabled={isLearning}
+            disabled={isLearning || group === '6'}
           >
             <ElectricBolt color="primary" />
             <Typography variant="subtitle2" sx={{ fontSize: 20 }}>
@@ -50,7 +54,11 @@ const GroupHeader = ({ isLearning }: IGroupHeader) => {
             </Typography>
           </Button>
         </NavLink>
-        <NavLink to={`/${ROUTE_PATH.AUDIOCALL}`} className="navLink" state={{ group, page }}>
+        <NavLink
+          to={`/${ROUTE_PATH.AUDIOCALL}`}
+          className={`navLink${isLearning || group === '6' ? ' disabled-link' : ''}`}
+          state={{ group, page }}
+        >
           <Button
             color={groupData[Number(group)].color}
             variant="contained"
@@ -58,7 +66,7 @@ const GroupHeader = ({ isLearning }: IGroupHeader) => {
             variants={fadeAnimation}
             custom={3.3}
             sx={{ height: '50px', mr: 2 }}
-            disabled={isLearning}
+            disabled={isLearning || group === '6'}
           >
             <Audiotrack color="primary" />
             <Typography variant="subtitle2" sx={{ fontSize: 20 }}>

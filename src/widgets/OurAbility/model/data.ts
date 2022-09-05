@@ -1,24 +1,29 @@
+import book from '../assets/book.jpg';
+import dictionary from '../assets/dictionary.jpg';
+import games from '../assets/games.jpg';
+import statistics from '../assets/statistics.jpg';
+
 const cardData = [
   {
-    src: `https://via.placeholder.com/300`,
+    src: `${book}`,
     alt: 'book',
     title: 'Учебник',
     description: 'В учебнике собраны 3600 самых используемых в повседневной жизни слов.',
   },
   {
-    src: `https://via.placeholder.com/300`,
+    src: `${dictionary}`,
     alt: 'dictionary',
     title: 'Словарь',
     description: 'Все слова которые ты изучил попадают в твой личный словарь.',
   },
   {
-    src: `https://via.placeholder.com/300`,
+    src: `${games}`,
     alt: 'games',
     title: 'Игры',
     description: 'Сделайте изучение слов более увлекательным с помощью мини-игр!',
   },
   {
-    src: `https://via.placeholder.com/300`,
+    src: `${statistics}`,
     alt: 'statistics',
     title: 'Статистика',
     description: 'Подробная статистика твоих достижений, изученных слов и ошибок.',

@@ -55,22 +55,26 @@ const SettingsBtn = ({ item }: ISettingsBtn) => {
           icon={<AddIcon color={muiColor[Number(group)]} />}
           tooltipTitle={group === '6' ? 'Несложное' : 'Сложное'}
           tooltipOpen
-          onClick={() => {
-            if (group === '6') handleDelete();
-            else markAsDifficult();
-            handleClose();
+          FabProps={{
+            disabled: userWord?.difficulty === 'hard' && group !== '6' && true,
+            onClick: () => {
+              if (group === '6') handleDelete();
+              else markAsDifficult();
+              handleClose();
+            },
           }}
-          FabProps={{ disabled: userWord?.difficulty === 'hard' && group !== '6' && true }}
         />
         <SpeedDialAction
           icon={<AddIcon color={muiColor[Number(group)]} />}
           tooltipTitle={'Изученное'}
           tooltipOpen
-          onClick={() => {
-            markAsLearned();
-            handleClose();
+          FabProps={{
+            disabled: userWord?.optional.isLearned,
+            onClick: () => {
+              markAsLearned();
+              handleClose();
+            },
           }}
-          FabProps={{ disabled: userWord?.optional.isLearned && true }}
         />
         <SpeedDialAction
           tooltipTitle={`Прогресс ${userWord ? userWord.optional.learnProgress : 0}/${

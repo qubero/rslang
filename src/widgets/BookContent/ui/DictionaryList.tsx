@@ -11,16 +11,16 @@ const DictionaryList = () => {
   const { isAuth } = useAuth();
   const [userId, setUserId] = useState('');
   const filter = getAggregatedWordsFilter(null, 'hard');
+  const { data, isWordsLoading } = useAggregatedWords({ wordsPerPage: 3600, filter });
 
-  const { data, isReady } = useAggregatedWords({ wordsPerPage: 3600, filter });
+  if (isWordsLoading && isAuth) return <WordsProgress />;
 
-  if (!isReady && isAuth) return <WordsProgress />;
   if (!isAuth) return <DictionaryAuth />;
 
   return (
     <Grid container spacing={2} sx={{ width: '100%' }}>
       {data.map((item, index) => (
-        <WordItem item={item} index={index} userId={userId} setUserId={setUserId} />
+        <WordItem key={item.word} item={item} index={index} userId={userId} setUserId={setUserId} />
       ))}
     </Grid>
   );

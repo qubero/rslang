@@ -2,9 +2,17 @@
   color: inherit;
   text-decoration: none;
   &.active {
-    text-decoration: underline;
+    color:white;
     &.logo {
       text-decoration: none;
     }
   }
+}
+.disabled-link {
+  pointer-events: none;
+}
+
+body {
+  background: url('../assets/main_bg.jpg') no-repeat;
+  background-size: cover;
 }
