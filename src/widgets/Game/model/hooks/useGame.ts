@@ -40,6 +40,7 @@ const useGame = (title: string, props: IGameProps) => {
 
         setFinalStat({
           ...stat,
+          successCount: statRef.current.successCount,
           successWords: words.filter((w) => w.answered),
           failWords: words.filter((w) => !w.answered),
         });
