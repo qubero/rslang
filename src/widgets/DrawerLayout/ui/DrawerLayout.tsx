@@ -19,9 +19,7 @@ const DrawerLayout = () => {
       <MiniDrawer open={open} {...propsDrawer} />
       <Box component="main" sx={drawlerStyle}>
         <DrawerHeader />
-        <Container maxWidth="xl" sx={{ marginY: 3 }} style={{ height: '100%' }}>
-          <Outlet />
-        </Container>
+        <Outlet />
         {hasFooter() && <Footer />}
       </Box>
     </Box>
