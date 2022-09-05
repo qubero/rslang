@@ -10,7 +10,7 @@ const BTNS = [
   ['верно', '#2e7d32'],
   ['неверно', '#d32f2f'],
 ];
-const m = [10, 10, 20, 30, 50, 80];
+const POINTS = [10, 10, 20, 30, 50, 80];
 
 const Sprint = (props: IGameProps) => {
   const { words, isMuted, handleReset } = props;
@@ -29,12 +29,19 @@ const Sprint = (props: IGameProps) => {
   const pointsRef = useRef(0);
   const boxRef = useRef<HTMLDivElement>(null);
 
+  const pressedRef = useRef(false);
+
   const handleChoice = useCallback(
     async (id: string) => {
       if (!isAnswered) {
+        if (pressedRef.current) return;
+        pressedRef.current = true;
+
         const res = await handleAnswer(id);
+
         if (res) {
-          pointsRef.current += m[Math.min(Math.ceil(currentStat.currentStreak / 4), m.length)];
+          pointsRef.current +=
+            POINTS[Math.min(Math.ceil(currentStat.currentStreak / 4), POINTS.length)];
         }
 
         if (boxRef.current) {
@@ -46,6 +53,7 @@ const Sprint = (props: IGameProps) => {
         setTimeout(() => {
           if (boxRef.current) boxRef.current.style.boxShadow = 'none';
           handleNextStep();
+          setTimeout(() => (pressedRef.current = false));
         }, 300);
       }
     },
@@ -77,7 +85,7 @@ const Sprint = (props: IGameProps) => {
         alignItems: 'center',
         gap: '20px',
         padding: '20px',
-        width: '500px',
+        minWidth: '500px',
         maxWidth: '100%',
         borderRadius: '15px',
       }}
@@ -113,7 +121,8 @@ const Sprint = (props: IGameProps) => {
         }}
       >
         <Typography variant="h5" sx={{ fontWeight: 'bold' }}>
-          + {m[Math.min(Math.ceil(currentStat.currentStreak / 4), m.length)]} очков за слово
+          + {POINTS[Math.min(Math.ceil(currentStat.currentStreak / 4), POINTS.length)]} очков за
+          слово
         </Typography>
         <Rating
           value={currentStat.currentStreak}
@@ -156,7 +165,9 @@ const Sprint = (props: IGameProps) => {
             badgeContent={idx + 1}
           >
             <Button
-              onClick={() => handleChoice(w.id)}
+              onClick={async () => {
+                await handleChoice(w.id);
+              }}
               sx={{
                 background: BTNS[idx][1],
               }}
