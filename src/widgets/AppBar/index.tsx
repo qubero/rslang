@@ -1,5 +1,5 @@
 import { FC, memo, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Toolbar, Typography, IconButton, Box } from '@mui/material';
 import { School, Menu } from '@mui/icons-material';
 
@@ -24,14 +24,14 @@ const AppBar: FC<IAppBarProps> = (props) => {
           <Menu />
         </IconButton>
         <Box sx={{ display: 'flex', flexGrow: 1, justifyContent: 'space-between' }}>
-          <NavLink to="/" className="navLink logo">
+          <Link to="/" className="navLink">
             <IconButton color="secondary">
               <Typography variant="h5" noWrap component="h1" sx={{ fontWeight: 'bold' }}>
                 RSLang
               </Typography>
               <School sx={{ ml: 1 }} />
             </IconButton>
-          </NavLink>
+          </Link>
           <UserPanel userAuth={userAuth} setUserAuth={setUserAuth} setModal={setModalToggle} />
         </Box>
       </Toolbar>

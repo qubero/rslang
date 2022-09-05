@@ -11,24 +11,22 @@ const ListItemMenu: FC<IListItemProps> = (props) => {
   const settings = getSettingsByLocation();
 
   const ListBtn = () => (
-    <ListItemButton sx={{ minHeight: 68, px: 2.5 }} onClick={onClick} disabled={disabled}>
-      <ListItemIcon sx={{ minWidth: 0, mr: 2, justifyContent: 'center' }}>
-        {Array.isArray(children) ? children[0] : children}
-      </ListItemIcon>
-      <ListItemText primary={text} sx={{ opacity: open ? 1 : 0, transition: 'all .5s' }} />
-      {Array.isArray(children) && open && children[1]}
-    </ListItemButton>
-  );
-  return (
     <List disablePadding sx={{ display: 'block' }}>
-      {link ? (
-        <NavLink to={link} className="navLink" state={settings}>
-          <ListBtn />
-        </NavLink>
-      ) : (
-        <ListBtn />
-      )}
+      <ListItemButton sx={{ minHeight: 68, px: 2.5 }} onClick={onClick} disabled={disabled}>
+        <ListItemIcon sx={{ minWidth: 0, mr: 2, justifyContent: 'center' }}>
+          {Array.isArray(children) ? children[0] : children}
+        </ListItemIcon>
+        <ListItemText primary={text} sx={{ opacity: open ? 1 : 0, transition: 'all .5s' }} />
+        {Array.isArray(children) && open && children[1]}
+      </ListItemButton>
     </List>
+  );
+  return link ? (
+    <NavLink to={link} className="navLink" state={settings}>
+      <ListBtn />
+    </NavLink>
+  ) : (
+    <ListBtn />
   );
 };
 

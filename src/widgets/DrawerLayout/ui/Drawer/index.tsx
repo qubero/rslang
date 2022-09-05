@@ -6,7 +6,6 @@ import {
   AutoStories,
   Extension,
   Addchart,
-  Logout,
   ExpandLess,
   ExpandMore,
   ElectricBolt,
