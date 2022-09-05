@@ -19,7 +19,7 @@ const ControlPanel = (props: IControlPanel) => {
         variant="contained"
         type="submit"
         loading={isLoading}
-        sx={{ fontSize: 16, color: '#FDF500' }}
+        sx={{ fontSize: 16, color: '#edefed' }}
       >
         {isLogin ? 'Войти' : 'Зарегистрироваться'}
       </LoadingButton>

@@ -28,7 +28,7 @@ const useAuthFormik = (
         if (!isLogin) initialStatistics(initial);
         setUserAuth(user);
         handlerClose();
-        window.location.reload();
+        setTimeout(() => window.location.reload(), 100);
       } catch (error) {
         setErrors({ password: isLogin ? 'Неверный email или пароль' : 'Этот email уже занят' });
       } finally {
