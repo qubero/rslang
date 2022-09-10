@@ -7,7 +7,7 @@ You can learn new words using flashcards. Or you can learn new words playing one
 
 ### Used technologies
  - React + TypeScript
- - Redax Toolkit
+ - Redux Toolkit
  - RTK Query
  - MUI
  - Framer Motion
