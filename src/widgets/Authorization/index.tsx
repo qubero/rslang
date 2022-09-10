@@ -2,7 +2,7 @@ import { Dispatch, memo, SetStateAction } from 'react';
 import { TextField, Stack, Typography } from '@mui/material';
 
 import { IUserResponse } from 'shared/api/lib/types';
-import { useAuthFormik } from './model/hooks';
+import { useAuthFormik } from './model/hooks/useAuthFormik';
 import ControlPanel from './ui/ControlPanel';
 
 type IAuthorizationProps = {
@@ -16,8 +16,8 @@ const Authorization = (props: IAuthorizationProps) => {
 
   return (
     <form onSubmit={formik.handleSubmit}>
-      <Stack spacing={3}>
-        <Typography variant="h5" sx={{ textAlign: 'center' }}>
+      <Stack spacing={2} sx={{ p: '20px 40px' }}>
+        <Typography variant="h5" sx={{ textAlign: 'center', mb: 1 }}>
           {isLogin ? 'Вход в аккаунт' : 'Регистрация'}
         </Typography>
         {!isLogin && (

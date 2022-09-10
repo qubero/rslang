@@ -3,7 +3,7 @@ import { useFormik } from 'formik';
 
 import { useAddUserMutation, useGetUserMutation, useUpdateStatisticsMutation } from 'shared/api';
 import { IUserResponse } from 'shared/api/lib/types';
-import { validationSchema } from 'widgets/Authorization/lib/util';
+import { schemaForLogin, schemaForRegistration } from 'widgets/Authorization/lib/util';
 import { INITIAL_STATISTICS } from 'shared/constants';
 
 const useAuthFormik = (
@@ -18,7 +18,7 @@ const useAuthFormik = (
 
   const formik = useFormik({
     initialValues: { name: '', email: '', password: '' },
-    validationSchema,
+    validationSchema: !isLogin ? schemaForRegistration : schemaForLogin,
     onSubmit: async ({ name, email, password }, { setErrors }) => {
       try {
         setLoading(true);
