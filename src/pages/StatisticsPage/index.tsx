@@ -1,28 +1,21 @@
 import { Stack, Typography } from '@mui/material';
 import { motion } from 'framer-motion';
-import { fadeAnimation } from 'shared/lib/styles';
+
+import { fadeAnimation, motionSettings } from 'shared/lib/styles';
+import { Wrapper } from 'shared/ui/Wrapper';
 
 import StatisticsTabs from 'widgets/StatisticsTabs/StatisticsTabs';
+const HeaderStyle = { fontWeight: 'bold', ml: 1 };
 
 const StatisticsPage = () => (
-  <Stack
-    component={motion.section}
-    spacing={1}
-    initial="hidden"
-    whileInView="visible"
-    viewport={{ once: true }}
-    sx={{ mt: 3 }}
-  >
-    <Typography
-      variant="h4"
-      sx={{ fontWeight: 'bold', ml: 1 }}
-      component={motion.h4}
-      variants={fadeAnimation}
-    >
-      Статистика
-    </Typography>
-    <StatisticsTabs />
-  </Stack>
+  <Wrapper>
+    <Stack component={motion.section} spacing={1} {...motionSettings} sx={{ mt: 3 }}>
+      <Typography variant="h4" sx={HeaderStyle} component={motion.h4} variants={fadeAnimation}>
+        Статистика
+      </Typography>
+      <StatisticsTabs />
+    </Stack>
+  </Wrapper>
 );
 
 export default StatisticsPage;
