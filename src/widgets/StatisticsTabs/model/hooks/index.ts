@@ -1,8 +1,16 @@
+import { useState, useEffect } from 'react';
+
+import { FetchBaseQueryError } from '@reduxjs/toolkit/dist/query/fetchBaseQuery';
 import { getFilteredWords } from 'widgets/StatisticsTabs/lib/util';
 import useAuth from 'widgets/Authorization/model/hooks/useAuth';
-import { useGetStatisticsQuery, useUpdateStatisticsMutation } from 'shared/api';
-import { IGameStatistic, IStatistic, IUserWord } from 'shared/api/lib/types';
 import { getDate } from 'shared/lib/utils';
+import { IGameStatistic, IStatistic, IUserWord } from 'shared/api/lib/types';
+import { STORAGE_AUTH_USER } from 'shared/constants';
+import {
+  useGetStatisticsQuery,
+  useGetUserWordsQuery,
+  useUpdateStatisticsMutation,
+} from 'shared/api';
 
 const useUserStatistics = () => {
   const [updateStats] = useUpdateStatisticsMutation();
@@ -12,13 +20,24 @@ const useUserStatistics = () => {
   const {
     stats: { optional, learnedWords },
     isLoadStatistics,
+    isFailedLoad,
   } = useGetStatisticsQuery(auth, {
     skip,
-    selectFromResult: ({ data, isFetching }) => ({
+    selectFromResult: ({ data, isFetching, error }) => ({
       stats: data ?? ({} as IStatistic),
       isLoadStatistics: isFetching,
+      isFailedLoad: error as FetchBaseQueryError,
     }),
   });
+
+  if (
+    isFailedLoad &&
+    isFailedLoad.status === 'PARSING_ERROR' &&
+    isFailedLoad.originalStatus === 401
+  ) {
+    localStorage.setItem(STORAGE_AUTH_USER, JSON.stringify(null));
+    window.location.reload();
+  }
 
   const updateWordsStats = (words: IUserWord[]) => {
     if (skip) return;
@@ -51,4 +70,19 @@ const useUserStatistics = () => {
   return { updateWordsStats, updateGameStats, isLoadStatistics };
 };
 
-export { useUserStatistics };
+const useStatisticsTabs = () => {
+  const [value, setValue] = useState('1');
+  const { auth, isAuth } = useAuth();
+  const { updateWordsStats, isLoadStatistics } = useUserStatistics();
+  const { data: words = [], isFetching } = useGetUserWordsQuery(auth, { skip: !isAuth });
+  useEffect(() => {
+    if (!isLoadStatistics && !isFetching && isAuth) {
+      updateWordsStats(words);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  return { value, setValue, isAuth, isFetching, isLoadStatistics };
+};
+
+export { useUserStatistics, useStatisticsTabs };

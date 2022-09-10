@@ -1,4 +1,4 @@
-import { useState, useEffect, Fragment } from 'react';
+import { Fragment } from 'react';
 import { motion } from 'framer-motion';
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
@@ -6,28 +6,18 @@ import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 
-import useAuth from 'widgets/Authorization/model/hooks/useAuth';
-import WordsProgress from 'widgets/BookContent/ui/WordsProgress';
-import DictionaryAuth from 'widgets/BookContent/ui/DictionaryAuth';
-import { useGetUserWordsQuery } from 'shared/api';
+import WordsProgress from 'shared/ui/ProgressBar';
+import DictionaryAuth from 'shared/ui/AuthNotification';
 import { fadeAnimation } from 'shared/lib/styles';
 import StatisticsItems from './ui/StatisticsItems';
 import StatisticsCharts from './ui/StatisticsCharts';
-import { useUserStatistics } from './model/hooks';
+import { useStatisticsTabs } from './model/hooks';
 
 const StatisticsTabs = () => {
-  const [value, setValue] = useState('1');
-  const { auth, isAuth } = useAuth();
-  const { updateWordsStats, isLoadStatistics } = useUserStatistics();
-  const { data: words = [], isFetching } = useGetUserWordsQuery(auth, { skip: !isAuth });
-  useEffect(() => {
-    if (!isLoadStatistics && !isFetching && isAuth) {
-      updateWordsStats(words);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const { value, setValue, isAuth, isFetching, isLoadStatistics } = useStatisticsTabs();
 
   if (!isAuth) return <DictionaryAuth />;
+
   if (isFetching || isLoadStatistics) return <WordsProgress />;
 
   return (

@@ -1,4 +1,4 @@
-import { IUserWord } from 'shared/api/lib/types';
+import { IGameStatistic, IUserWord } from 'shared/api/lib/types';
 import { getDate } from 'shared/lib/utils';
 
 const getFilteredWords = (item: IUserWord) => {
@@ -14,6 +14,13 @@ const getTotalPercent = (sprint: number, audiocall: number) => {
 
 const checkDate = (date: string) => date === getDate();
 
+const getAmountWords = (game: IGameStatistic, key: keyof IGameStatistic) => {
+  return (checkDate(game.currentDate) && game[key]) || 0;
+};
+
+const getGamePercent = (game: IGameStatistic, key: keyof IGameStatistic) => {
+  return (checkDate(game.currentDate) && ((game[key] as number) * 10).toFixed(0)) || 0;
+};
 const wordsData = (words: { [key: string]: number }, isAsc: boolean) => ({
   labels: Object.keys(words),
   datasets: [
@@ -65,4 +72,12 @@ const options = (text: string) => ({
   },
 });
 
-export { getFilteredWords, getTotalPercent, checkDate, wordsData, options };
+export {
+  getFilteredWords,
+  getTotalPercent,
+  checkDate,
+  wordsData,
+  options,
+  getAmountWords,
+  getGamePercent,
+};
