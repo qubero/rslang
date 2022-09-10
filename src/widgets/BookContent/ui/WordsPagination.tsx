@@ -5,18 +5,19 @@ import { motion } from 'framer-motion';
 import { fadeAnimation } from 'shared/lib/styles';
 import { themeColor } from 'widgets/BookHeader/lib/styles';
 import { useQueryParams } from 'widgets/BookHeader/model/hooks/useQuery';
+import { useAppDispatch } from 'shared/store/model/hooks';
+import { setLoading } from 'shared/store/slices/bookSlice';
 
 type IWordsPagination = { learn: boolean };
 
 const WordsPagination = ({ learn }: IWordsPagination) => {
   const { group, page, setQuery } = useQueryParams();
+  const dispatch = useAppDispatch();
 
-  const handleChange = useCallback(
-    (e: ChangeEvent<unknown>, value: number) => {
-      setQuery({ group, page: `${value - 1}` });
-    },
-    [group, setQuery]
-  );
+  const handleChange = (e: ChangeEvent<unknown>, value: number) => {
+    setQuery({ group, page: `${value - 1}` });
+    dispatch(setLoading(true));
+  };
   if (group === '6') return null;
   return (
     <Box
@@ -35,8 +36,6 @@ const WordsPagination = ({ learn }: IWordsPagination) => {
         onChange={handleChange}
         shape="rounded"
         size="large"
-        showFirstButton
-        showLastButton
         sx={{ display: 'flex', justifyContent: 'center' }}
       />
     </Box>
