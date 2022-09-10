@@ -10,5 +10,11 @@ const muiColor: IMuiColor[] = [
   'error',
   'info',
 ];
+const btnCardStyle = (i: number) => ({
+  width: '100%',
+  flexGrow: 1,
+  height: '65px',
+  justifyContent: i > 5 ? 'center' : 'space-between',
+});
 
-export { themeColor, muiColor };
+export { themeColor, muiColor, btnCardStyle };

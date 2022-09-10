@@ -3,15 +3,16 @@ import { ElectricBolt, Audiotrack } from '@mui/icons-material';
 import { Stack, Typography, Button } from '@mui/material';
 import { motion } from 'framer-motion';
 import { NavLink } from 'react-router-dom';
+
 import { fadeAnimation } from 'shared/lib/styles';
 import { ROUTE_PATH } from 'shared/constants';
+import { useAppSelector } from 'shared/store/model/hooks';
 import { groupData } from '../model/constants';
 import { useQueryParams } from '../model/hooks/useQuery';
 
-type IGroupHeader = { isLearning?: boolean };
-
-const GroupHeader = ({ isLearning }: IGroupHeader) => {
+const GroupHeader = () => {
   const { group, page } = useQueryParams();
+  const isLearning = useAppSelector((state) => state.bookSlice.learned);
 
   return (
     <Stack direction="row">

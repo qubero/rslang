@@ -19,12 +19,9 @@ type IGroup = {
   title: string;
   subtitle: string;
 };
-interface IGroupPanel {
-  isLearning: boolean;
-}
 
 interface IWordsPanel {
   setLearning: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export type { IWordsPanel, IMuiColor, IGroup, IGroupPanel, ISetQuery };
+export type { IWordsPanel, IMuiColor, IGroup, ISetQuery };
