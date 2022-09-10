@@ -4,7 +4,7 @@ import { Box, Button, Stack, Typography } from '@mui/material';
 import { motion } from 'framer-motion';
 
 import { NavLink } from 'react-router-dom';
-import { fadeAnimation } from 'shared/lib/styles';
+import { fadeAnimation, motionSettings } from 'shared/lib/styles';
 import { ROUTE_PATH } from 'shared/constants';
 import learnEnglish from './assets/learn_english.png';
 
@@ -15,9 +15,7 @@ const Intro = () => {
       spacing={4}
       sx={{ height: '90vh', mb: 4, justifyContent: 'center', alignItems: 'center' }}
       component={motion.section}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true }}
+      {...motionSettings}
     >
       <Stack spacing={2} sx={{ maxWidth: '360px', alignItems: 'start' }}>
         <Typography

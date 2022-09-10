@@ -29,7 +29,7 @@ const OurApplication = () => {
           height="100%"
           frameBorder="0"
           loading="eager"
-          src="https://www.youtube.com/embed/GtL1huin9EE"
+          src="https://www.youtube.com/embed/ArL2CGjGbP8"
         />
       </Box>
     </Stack>

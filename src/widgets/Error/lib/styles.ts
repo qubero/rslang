@@ -6,7 +6,6 @@ const errorStyle = {
   width: 800,
   bgcolor: 'white',
   color: 'black',
-  border: '3px solid #F3E600',
   borderRadius: '10px',
   boxShadow: 24,
   p: 4,

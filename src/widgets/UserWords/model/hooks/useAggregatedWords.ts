@@ -1,6 +1,8 @@
+import { FetchBaseQueryError } from '@reduxjs/toolkit/dist/query/fetchBaseQuery';
 import { useLayoutEffect, useRef, useState } from 'react';
 import { useGetAggregatedWordsQuery } from 'shared/api';
 import { IAggregatedWordsResponse, IWord } from 'shared/api/lib/types';
+import { STORAGE_AUTH_USER } from 'shared/constants';
 import useAuth from 'widgets/Authorization/model/hooks/useAuth';
 import { MIN_WORDS_FOR_GAME_COUNT } from 'widgets/Games';
 import { IUseWordsParams } from 'widgets/UserWords/lib/types';
@@ -19,14 +21,24 @@ const useAggregatedWords = (params: IUseWordsParams) => {
     { auth, params },
     {
       skip: !isAuth,
-      selectFromResult: ({ data, isFetching, isLoading, isSuccess, isError }) => ({
+      selectFromResult: ({ data, isFetching, isLoading, isSuccess, isError, error }) => ({
         words: data ? normalizeWords(data) : [],
         isWordsLoading: isFetching || isLoading,
         isLoadedOnce: isSuccess,
         isFetchError: isError,
+        isFailedLoad: error as FetchBaseQueryError,
       }),
     }
   );
+
+  if (
+    wordsQuery.isFailedLoad &&
+    wordsQuery.isFailedLoad.status === 'PARSING_ERROR' &&
+    wordsQuery.isFailedLoad.originalStatus === 401
+  ) {
+    localStorage.setItem(STORAGE_AUTH_USER, JSON.stringify(null));
+    window.location.reload();
+  }
 
   useLayoutEffect(() => {
     const { words, isWordsLoading, isLoadedOnce } = wordsQuery;

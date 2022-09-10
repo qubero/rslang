@@ -5,10 +5,8 @@ import {
   Stack,
   Typography,
   Card,
-  CardActionArea,
   CardContent,
   CardMedia,
-  Divider,
 } from '@mui/material';
 
 import { fadeAnimation } from 'shared/lib/styles';
@@ -38,7 +36,7 @@ const OurAbility = () => {
               sx={{ maxWidth: 350 }}
               component={motion.div}
               variants={fadeAnimation}
-              custom={i + 1}
+              custom={i + 0.8}
             >
               <CardMedia component="img" height="250" image={card.src} alt={card.alt} />
               <CardContent>

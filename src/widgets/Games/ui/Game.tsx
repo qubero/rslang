@@ -1,5 +1,5 @@
 import { Box } from '@mui/material';
-import { WrapperBackground } from 'shared/ui/Wrapper';
+import { Wrapper, WrapperBackground } from 'shared/ui/Wrapper';
 import useGameControls from '../model/hooks/useGameControls';
 import useGameInit from '../model/hooks/useGameInit';
 import { IGameTitle } from '../model/constants';
@@ -12,34 +12,36 @@ const Game = ({ game }: { game: IGameTitle }) => {
   const { settings, isStart, handleStart, handleReset, handleGroupChange } = useGameInit();
 
   return (
-    <Box
-      ref={fullscreenRef}
-      sx={{
-        width: '100%',
-        height: '100%',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-    >
-      <WrapperBackground />
-      <GameControls
-        isFull={isFull}
-        isMuted={isMuted}
-        toggleSound={toggleSound}
-        toggleFullscreen={toggleFullscreen}
-      />
-      {!isStart || isNaN(settings.page) ? (
-        <GameInit
-          game={game}
-          settings={settings}
-          handleStart={handleStart}
-          handleGroupChange={handleGroupChange}
+    <Wrapper fullHeight={true}>
+      <Box
+        ref={fullscreenRef}
+        sx={{
+          width: '100%',
+          height: '100%',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <WrapperBackground />
+        <GameControls
+          isFull={isFull}
+          isMuted={isMuted}
+          toggleSound={toggleSound}
+          toggleFullscreen={toggleFullscreen}
         />
-      ) : (
-        <GameSetup game={game} settings={settings} isMuted={isMuted} handleReset={handleReset} />
-      )}
-    </Box>
+        {!isStart || isNaN(settings.page) ? (
+          <GameInit
+            game={game}
+            settings={settings}
+            handleStart={handleStart}
+            handleGroupChange={handleGroupChange}
+          />
+        ) : (
+          <GameSetup game={game} settings={settings} isMuted={isMuted} handleReset={handleReset} />
+        )}
+      </Box>
+    </Wrapper>
   );
 };
 

@@ -16,7 +16,7 @@ export default class ErrorBoundary extends Component<IErrorProps, IErrorState> {
       return (
         <Box sx={errorStyle}>
           <Typography variant="h2" component="h2" sx={{ color: 'black' }}>
-            Извините, произошла ошибка
+            Извините, произошла неизветная ошибка, перезагрузите страницу
           </Typography>
         </Box>
       );

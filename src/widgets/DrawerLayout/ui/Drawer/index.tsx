@@ -33,27 +33,27 @@ const MiniDrawer: FC<IMiniDrawerProps> = (props) => {
       </DrawerHeader>
       <Divider />
       <List sx={{ p: 0 }} component="nav">
-        <ListItem text="Главная" open={open} link={INDEX}>
+        <ListItem text="Главная" open={open} link={INDEX} onClick={handleDrawerClose}>
           <Widgets color="primary" />
         </ListItem>
-        <ListItem text="Учебник" open={open} link={BOOK}>
+        <ListItem text="Учебник" open={open} link={BOOK} onClick={handleDrawerClose}>
           <AutoStories color="primary" />
         </ListItem>
-        <ListItem text="Игры" open={open} onClick={handleToggle} disabled={!open}>
+        <ListItem text="Игры" open={open} onClick={handleToggle}>
           <Extension color="primary" />
           {toggle ? <ExpandLess /> : <ExpandMore />}
         </ListItem>
         <Collapse in={toggle} timeout="auto" unmountOnExit>
           <Box>
-            <ListItem text="Спринт" open={toggle} link={SPRINT}>
+            <ListItem text="Спринт" open={open} link={SPRINT} onClick={handleDrawerClose}>
               <ElectricBolt color="primary" />
             </ListItem>
-            <ListItem text="Аудиовызов" open={toggle} link={AUDIOCALL}>
+            <ListItem text="Аудиовызов" open={open} link={AUDIOCALL} onClick={handleDrawerClose}>
               <Audiotrack color="primary" />
             </ListItem>
           </Box>
         </Collapse>
-        <ListItem text="Статистика" open={open} link={INFO}>
+        <ListItem text="Статистика" open={open} link={INFO} onClick={handleDrawerClose}>
           <Addchart color="primary" />
         </ListItem>
       </List>
