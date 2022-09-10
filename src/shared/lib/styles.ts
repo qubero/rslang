@@ -1,3 +1,21 @@
+import { RefObject } from 'react';
+
+interface ViewportOptions {
+  root?: RefObject<Element>;
+  once?: boolean;
+  margin?: string;
+  amount?: 'some' | 'all' | number;
+  fallback?: boolean;
+}
+
+const viewport: ViewportOptions = { once: true };
+
+const motionSettings = {
+  initial: 'hidden',
+  whileInView: 'visible',
+  viewport,
+};
+
 const slideAnimation = {
   hidden: {
     y: 100,
@@ -20,4 +38,4 @@ const fadeAnimation = {
   }),
 };
 
-export { slideAnimation, fadeAnimation };
+export { slideAnimation, fadeAnimation, motionSettings };

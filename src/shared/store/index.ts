@@ -1,9 +1,11 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import { learnWordsAPI, userWordsApi } from '../api';
+import bookSlice from './slices/bookSlice';
 
 const rootReducer = combineReducers({
   [learnWordsAPI.reducerPath]: learnWordsAPI.reducer,
   [userWordsApi.reducerPath]: userWordsApi.reducer,
+  bookSlice: bookSlice.reducer,
 });
 
 export const store = configureStore({
