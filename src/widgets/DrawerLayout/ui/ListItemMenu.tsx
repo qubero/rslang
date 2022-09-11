@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { ListItem as List, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
 
 import { useGameSettings } from 'widgets/Games';
-import { IListItemProps } from './lib/types';
+import { IListItemProps } from '../lib/types';
 
 const ListItemMenu: FC<IListItemProps> = (props) => {
   const { open, text, children, onClick, disabled, link } = props;
