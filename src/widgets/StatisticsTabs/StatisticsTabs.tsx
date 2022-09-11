@@ -6,11 +6,11 @@ import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 
-import WordsProgress from 'shared/ui/ProgressBar';
 import DictionaryAuth from 'shared/ui/AuthNotification';
 import { fadeAnimation } from 'shared/lib/styles';
 import StatisticsItems from './ui/StatisticsItems';
 import StatisticsCharts from './ui/StatisticsCharts';
+import StatisticsProgress from './ui/StatisticsProgress';
 import { useStatisticsTabs } from './model/hooks';
 
 const StatisticsTabs = () => {
@@ -18,7 +18,7 @@ const StatisticsTabs = () => {
 
   if (!isAuth) return <DictionaryAuth />;
 
-  if (isFetching || isLoadStatistics) return <WordsProgress />;
+  if (isFetching || isLoadStatistics) return <StatisticsProgress />;
 
   return (
     <Fragment>
