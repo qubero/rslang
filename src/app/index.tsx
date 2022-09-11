@@ -1,12 +1,11 @@
 import { Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from '@emotion/react';
 
-import { Wrapper } from 'shared/ui/Wrapper';
 import MainPage from 'pages/MainPage';
 import BookPage from 'pages/BookPage';
 import StatisticsPage from 'pages/StatisticsPage';
+import DrawerLayout from 'widgets/DrawerLayout';
 import ErrorBoundary from 'widgets/Error';
-import { DrawerLayout } from 'widgets/DrawerLayout';
 import { Game, GAMES_TITLES } from 'widgets/Games';
 import { ROUTE_PATH } from 'shared/constants';
 import { theme } from './lib/styles';

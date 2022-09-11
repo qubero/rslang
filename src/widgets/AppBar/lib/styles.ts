@@ -2,8 +2,6 @@ import MuiAppBar from '@mui/material/AppBar';
 import { styled } from '@mui/material/styles';
 import { IAppBar } from './types';
 
-const drawerWidth = 240;
-
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open',
 })<IAppBar>(({ theme, open }) => ({
@@ -13,8 +11,7 @@ const AppBar = styled(MuiAppBar, {
     duration: theme.transitions.duration.leavingScreen,
   }),
   ...(open && {
-    marginLeft: drawerWidth,
-    width: `calc(100% - ${drawerWidth}px)`,
+    zIndex: 0,
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
@@ -25,7 +22,7 @@ const AppBar = styled(MuiAppBar, {
 const iconStyle = (open: boolean) => ({
   marginRight: 3,
   fontSize: 0,
-  display: open ? 'none' : 'block',
+  opacity: open ? 0 : 1,
 });
 
 export { AppBar, iconStyle };
