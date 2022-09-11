@@ -14,7 +14,8 @@ const btnCardStyle = (i: number) => ({
   width: '100%',
   flexGrow: 1,
   height: '65px',
-  justifyContent: i > 5 ? 'center' : 'space-between',
+  justifyContent: { xs: 'center', md: i > 5 ? 'center' : 'space-between' },
+  gap: { xs: i > 5 ? 0 : 2.5, md: 0 },
 });
 
 export { themeColor, muiColor, btnCardStyle };

@@ -16,7 +16,7 @@ const GroupCards = () => {
   return (
     <Grid container spacing={2} sx={{ width: '100%' }}>
       {groupData.map((item, i) => (
-        <Grid sm={12} md={i > 3 ? 4 : 3} xl display="flex" key={item.value}>
+        <Grid xs={12} md={i > 3 ? 4 : 3} xl display="flex" key={item.value}>
           <Button
             onClick={() => {
               setQuery({ group: item.value, page: '0' });
