@@ -1,9 +1,10 @@
 import { IWord } from 'shared/api/lib/types';
 
 const cardWordStyle = (item: IWord) => ({
-  maxWidth: { md: 1000, xl: 700 },
-  display: 'flex',
-  flexDirection: 'row',
+  maxWidth: { xs: '100%', md: 1000, xl: 700 },
+  display: 'grid',
+  gridTemplateColumns: { xs: 'minmax(200px, 500px)', md: '250px 1fr', xl: '200px 1fr' },
+  gridTemplateRows: { xs: '300px 1fr', md: 'minmax(310px, 325px)' },
   flexGrow: 1,
   background: (item.userWord?.difficulty === 'hard' && '#d32f2f46') || 'inherit',
   boxShadow: item.userWord?.optional.isLearned

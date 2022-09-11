@@ -1,6 +1,20 @@
 body {
   overflow-y: scroll;
 }
+.MuiPagination-root {
+  .MuiPaginationItem-root {
+    @media (max-width: 500px) {
+      font-size: 17px;
+      padding: 0;
+      min-width: 30px;
+      height: 30px;
+    }
+    @media (max-width: 375px) {
+      font-size: 15px;
+      min-width: 24px;
+    }
+  }
+}
 .MuiPagination-root.Pagination2e7d32 {
   button.Mui-selected {
     background-color: #2e7d32;
@@ -48,7 +62,7 @@ body {
 }
 .MuiPagination-root.PaginationLearn {
   button.Mui-selected {
-    background-color: #FDF500;
+    background-color: #fdf500;
   }
 }
 
@@ -65,4 +79,3 @@ body {
   background-color: #d32f2f;
   color: white;
 }
-
