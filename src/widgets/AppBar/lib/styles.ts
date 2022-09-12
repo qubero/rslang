@@ -22,7 +22,7 @@ const AppBar = styled(MuiAppBar, {
 const iconStyle = (open: boolean) => ({
   marginRight: 3,
   fontSize: 0,
-  opacity: open ? 0 : 1,
+  opacity: Number(!open),
 });
 
 export { AppBar, iconStyle };
