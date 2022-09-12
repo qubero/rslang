@@ -1,4 +1,5 @@
 import { Box, Button, Grow, Typography } from '@mui/material';
+import { theme } from 'app/lib/styles';
 import { groupData } from 'widgets/BookHeader/model/constants';
 import { GAMES } from '../model/constants';
 
@@ -33,6 +34,9 @@ const GameInit = (props: IGameInit) => {
           alignItems: 'center',
           maxWidth: '500px',
           textAlign: 'center',
+          [theme.breakpoints.down('lg')]: {
+            padding: '2rem',
+          },
         }}
       >
         <Typography variant="h4" sx={{ fontWeight: 'bold' }}>
@@ -42,22 +46,22 @@ const GameInit = (props: IGameInit) => {
           {description}
         </Typography>
         {isNaN(group) ? (
-          <div>
+          <Box sx={{ width: '100%' }}>
             Выберите сложность:
-            <br />
-            <br />
-            {GROUPS.map((g: string, idx: number) => (
-              <Button
-                color={groupData[idx].color}
-                variant="contained"
-                sx={{ height: '50px', mr: 2 }}
-                key={g}
-                onClick={() => handleGroupChange(idx)}
-              >
-                {g}
-              </Button>
-            ))}
-          </div>
+            <Box sx={{ display: 'flex', flexFlow: 'column wrap', gap: 1, mt: 2, height: '120px' }}>
+              {GROUPS.map((g: string, idx: number) => (
+                <Button
+                  color={groupData[idx].color}
+                  variant="contained"
+                  sx={{ height: '50px' }}
+                  key={g}
+                  onClick={() => handleGroupChange(idx)}
+                >
+                  {g}
+                </Button>
+              ))}
+            </Box>
+          </Box>
         ) : (
           <div>
             Выбранная группа: {GROUPS[+group]}, страница: {+page + 1}
