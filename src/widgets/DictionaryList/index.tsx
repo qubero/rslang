@@ -5,7 +5,7 @@ import useAuth from 'widgets/Authorization/model/hooks/useAuth';
 import { getAggregatedWordsFilter, useAggregatedWords } from 'widgets/UserWords';
 import { useAppSelector } from 'shared/store/model/hooks';
 import AuthNotification from 'shared/ui/AuthNotification';
-import ProgressBar from 'shared/ui/ProgressBar';
+import ProgressBar from 'widgets/BookList/ui/WordProgress';
 import WordItem from 'widgets/BookList/ui/WordItem';
 
 const DictionaryList = () => {

@@ -23,7 +23,7 @@ const WordHeader = ({ item, userId, setUserId }: IWordHeader) => {
         <Typography variant="h6" sx={{ textTransform: 'capitalize', fontWeight: 'bold' }}>
           {item.word}
         </Typography>
-        <Typography variant="h6" sx={{ flexGrow: 1, fontWeight: '400' }}>
+        <Typography sx={{ flexGrow: 1, fontWeight: '400', fontSize: { xs: '17px', md: '20px' } }}>
           {item.transcription}
         </Typography>
         {isAuth && <SettingsBtn item={item} />}

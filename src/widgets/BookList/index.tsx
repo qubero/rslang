@@ -1,9 +1,9 @@
 import { memo, useState } from 'react';
-import { Unstable_Grid2 as Grid } from '@mui/material';
+import { Unstable_Grid2 as Grid, Box } from '@mui/material';
 
 import { IWord } from 'shared/api/lib/types';
 import { useAppSelector } from 'shared/store/model/hooks';
-import ProgressBar from 'shared/ui/ProgressBar';
+import WordProgress from 'widgets/BookList/ui/WordProgress';
 import WordItem from './ui/WordItem';
 
 type IWordsList = { words: IWord[] | undefined; load: boolean };
@@ -13,10 +13,10 @@ const WordsList = (props: IWordsList) => {
   const [userId, setUserId] = useState('');
   const loading = useAppSelector((state) => state.bookSlice.loading);
 
-  if (load && loading) return <ProgressBar />;
+  if (load && loading) return <WordProgress />;
 
   return (
-    <Grid container spacing={2} sx={{ width: '100%' }}>
+    <Grid container spacing={2} sx={{ width: '100%', justifyContent: 'center' }}>
       {words &&
         words.map((item, index) => (
           <WordItem
