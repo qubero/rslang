@@ -1,6 +1,7 @@
+import { useCallback, useEffect, useRef } from 'react';
 import { AccessTime, RadioButtonChecked, RadioButtonUnchecked } from '@mui/icons-material';
 import { Badge, Box, Button, Rating, Typography } from '@mui/material';
-import { useCallback, useEffect, useRef } from 'react';
+import { theme } from 'app/lib/styles';
 import { IGameProps } from '../lib/types';
 import useGame from '../model/hooks/useGame';
 import GameStat from './GameStat';
@@ -85,9 +86,11 @@ const Sprint = (props: IGameProps) => {
         alignItems: 'center',
         gap: '20px',
         padding: '20px',
-        minWidth: '500px',
         maxWidth: '100%',
         borderRadius: '15px',
+        [theme.breakpoints.up('md')]: {
+          minWidth: '500px',
+        },
       }}
       ref={boxRef}
     >
@@ -135,7 +138,10 @@ const Sprint = (props: IGameProps) => {
       <Box
         sx={{
           display: 'flex',
+          flexWrap: 'wrap',
           alignItems: 'center',
+          justifyContent: 'center',
+          textAlign: 'center',
           gap: '10px',
           margin: '50px 0',
         }}
