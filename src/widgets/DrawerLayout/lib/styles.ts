@@ -3,6 +3,8 @@ import { styled, Theme, CSSObject } from '@mui/material/styles';
 
 const drawerWidth = 240;
 
+const drawlerStyle = { flexGrow: 1, display: 'flex', flexDirection: 'column', height: '100vh' };
+
 const openedMixin = (theme: Theme): CSSObject => ({
   width: drawerWidth,
   background: '#fffdfd',
@@ -11,6 +13,10 @@ const openedMixin = (theme: Theme): CSSObject => ({
     duration: theme.transitions.duration.enteringScreen,
   }),
   overflowX: 'hidden',
+  [theme.breakpoints.down('lg')]: {
+    width: 0,
+    display: 'none',
+  },
 });
 
 const closedMixin = (theme: Theme): CSSObject => ({
@@ -20,9 +26,10 @@ const closedMixin = (theme: Theme): CSSObject => ({
   }),
   background: '#fffdfd',
   overflowX: 'hidden',
-  width: `calc(${theme.spacing(7)} + 1px)`,
-  [theme.breakpoints.up('sm')]: {
-    width: `calc(${theme.spacing(9)} + 1px)`,
+  width: `calc(${theme.spacing(9)} + 1px)`,
+  [theme.breakpoints.down('lg')]: {
+    width: 0,
+    display: 'none',
   },
 });
 
@@ -50,5 +57,4 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
     }),
   })
 );
-
-export { Drawer, DrawerHeader };
+export { drawlerStyle, Drawer, DrawerHeader, drawerWidth };

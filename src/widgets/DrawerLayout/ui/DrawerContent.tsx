@@ -1,4 +1,4 @@
-import { FC, memo } from 'react';
+import { Fragment, memo } from 'react';
 import { Box, List, Typography, Divider, IconButton, Collapse } from '@mui/material';
 import {
   ChevronLeft,
@@ -13,16 +13,22 @@ import {
 } from '@mui/icons-material';
 
 import { ROUTE_PATH } from 'shared/constants';
-import ListItem from '../ListItemMenu';
-import { Drawer, DrawerHeader } from './lib/styles';
-import { IMiniDrawerProps } from './lib/types';
+import { DrawerHeader } from '../lib/styles';
+import ListItem from './ListItemMenu';
 
-const MiniDrawer: FC<IMiniDrawerProps> = (props) => {
+type IDrawerContent = {
+  toggle: boolean;
+  open: boolean;
+  handleDrawerClose: () => void;
+  handleToggle: () => void;
+};
+
+const DrawerContent = (props: IDrawerContent) => {
   const { open, toggle, handleDrawerClose, handleToggle } = props;
   const { INDEX, BOOK, SPRINT, AUDIOCALL, INFO } = ROUTE_PATH;
 
   return (
-    <Drawer variant="permanent" open={open}>
+    <Fragment>
       <DrawerHeader sx={{ justifyContent: 'space-between' }}>
         <Typography variant="h6" sx={{ ml: 8.5, opacity: open ? 1 : 0, transition: 'all .5s' }}>
           Меню
@@ -32,7 +38,7 @@ const MiniDrawer: FC<IMiniDrawerProps> = (props) => {
         </IconButton>
       </DrawerHeader>
       <Divider />
-      <List sx={{ p: 0 }} component="nav">
+      <List sx={{ p: 0 }}>
         <ListItem text="Главная" open={open} link={INDEX} onClick={handleDrawerClose}>
           <Widgets color="primary" />
         </ListItem>
@@ -58,8 +64,8 @@ const MiniDrawer: FC<IMiniDrawerProps> = (props) => {
         </ListItem>
       </List>
       <Divider />
-    </Drawer>
+    </Fragment>
   );
 };
 
-export default memo(MiniDrawer);
+export default memo(DrawerContent);
