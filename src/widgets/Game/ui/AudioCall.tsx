@@ -1,5 +1,6 @@
-import { Badge, Box, Button, Grow, Typography } from '@mui/material';
 import { useEffect, useRef } from 'react';
+import { Badge, Box, Button, Grow, Typography } from '@mui/material';
+import { theme } from 'app/lib/styles';
 import { API_URL } from 'shared/api/model/constants';
 import { IGameProps } from '../lib/types';
 import useGame from '../model/hooks/useGame';
@@ -69,14 +70,16 @@ const AudioCall = (props: IGameProps) => {
         gap: '20px',
       }}
     >
-      <div
-        style={{
-          height: 200,
+      <Box
+        sx={{
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'flex-end',
           alignItems: 'center',
-          transform: 'translateY(-20px)',
+          [theme.breakpoints.up('md')]: {
+            height: 200,
+            transform: 'translateY(-20px)',
+          },
         }}
       >
         {isAnswered && (
@@ -94,7 +97,7 @@ const AudioCall = (props: IGameProps) => {
           </Grow>
         )}
         <SoundBtn word={words[currentWordIndex]} isMuted={isMuted} />
-      </div>
+      </Box>
       <Box
         sx={{
           width: '100%',
