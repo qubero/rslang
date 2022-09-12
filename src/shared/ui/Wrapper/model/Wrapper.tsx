@@ -9,7 +9,7 @@ const Wrapper = (props: { children: JSX.Element | JSX.Element[]; fullHeight?: bo
   return (
     <Fragment>
       {!fullHeight && <WrapperBackground />}
-      <Container maxWidth="xl" sx={{ marginY: 3, height: fullHeight ? '100%' : 'auto' }}>
+      <Container maxWidth="xl" sx={{ paddingY: 3, flex: '1 1 auto' }}>
         {children}
       </Container>
     </Fragment>
